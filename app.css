@@ -122,17 +122,6 @@ input[type="email"]:focus
 .button:hover {
     opacity: 1;
 }
-footer {
-    margin-left: 600px;margin-top: 10px;opacity: 0.3;
-    -webkit-transition: all 400ms ease-in-out;
-    -moz-transition: all 400ms ease-in-out;
-    -o-transition: all 400ms ease-in-out;
-    -ms-transition: all 400ms ease-in-out;
-    transition: all 400ms ease-in-out;
-}
-footer:hover{
-    opacity: 0.9;
-}
 h1{
 color: black; margin: 10px 5px;
 }
