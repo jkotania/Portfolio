@@ -15,7 +15,6 @@ ul{
 }
 .active{
     color: darkslateblue;
-    text-decoration: underline;
     font-weight: bold;
 }
 body,
@@ -33,10 +32,16 @@ html{
     justify-content: space-between;
     width: 100%;
     padding: 10px;
-    color: whitesmoke;
+    color: white;
 }
 .navbar h1{
     text-shadow: 1px 2px black;  
+}
+.coq{
+    text-decoration: none;
+    padding: 5px 0;  
+    color: white;
+    position: relative;
 }
 .nav-links{
     display: flex;
@@ -45,8 +50,21 @@ html{
 }
 .nav-links li{
     margin: 0 30px;
+    display: inline-block;
 }
-
+.coq::after{
+    content: "";
+    background: gray;
+    width: 0%;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: width 0.4s;
+}
+.coq:hover::after{
+    width: 100%;
+}
 header{
     width: 100vw;
     height: 100vw;
@@ -85,7 +103,17 @@ header{
     font-size: 12px;
     background: darkslateblue;
     border-radius: 30px; 
-    color: whitesmoke;
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    -ms-transition: all 400ms ease-in-out; 
+    transition: all 400ms ease-in-out;
+    color: white;
+    border: 1px solid darkslateblue;
+}
+.ctn:hover{
+    background-color: transparent;
+    border: 1px solid darkslateblue;
 }
 .menu-btn{
     position: absolute;
@@ -183,7 +211,7 @@ margin: 30px;
     min-height: 100px;
     padding: 20px 8px;
     margin: 0;
-    background: darkslateblue;
+    background: blue;
     text-align: center;
 }
 .footer p{

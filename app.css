@@ -9,16 +9,13 @@ body{
 box-sizing: border-box;
 }
 .header{
-height: 50vw;
+height: 120px;
 width: 100%;
 padding: 0 8%;
-background: transparent;
 position: relative;
 }
 .active{
-    color: darkslateblue;
-    text-decoration: underline;
-    font-weight: bold;
+    font-weight: bolder;
 }
 nav{
     display: flex;
@@ -55,34 +52,9 @@ nav{
 .nav-links li a:hover::after{
     width: 100%;
 }
-.btn{
-background: darkgray;
-color: black;
-padding: 10px 30px;
-border-radius: 3px;
-border: 3px solid darkgray;
-cursor: pointer;
-text-align: center;
-font-size: 18px;
-text-decoration: none;
-display: inline-block;
--webkit-transition: all 400ms ease-in-out;
--moz-transition: all 400ms ease-in-out;
--o-transition: all 400ms ease-in-out;
--ms-transition: all 400ms ease-in-out;
-transition: all 400ms ease-in-out;
-cursor: pointer;
-}
-.btn:hover{
-    background-color: transparent;
-    color: white;
-    border: 3px solid darkgray;
-
-}
 .container {
     margin: auto;
-    margin-top: 50px;
-    width: 100%;
+    margin-top: 5px;
     padding: 14px;
     background-color: white;
     box-shadow: 20px 30px 25px 0px rgba(0, 0, 0, 6)
