@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Source+Sans+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap');
+
 body{
     background-color: darkslateblue;
     font-family: 'Poppins', sans-serif;
@@ -9,10 +10,10 @@ body{
 box-sizing: border-box;
 }
 .header{
-height: 120px;
+height: 145px;
 width: 100%;
-padding: 0 8%;
-position: relative;
+padding: 0 5%;
+position: sticky;
 }
 .active{
     font-weight: bolder;
@@ -23,20 +24,20 @@ nav{
     justify-content: space-between;
 }
 .logo{
-    width: 120px;
+    max-width: 100px;
     background-color: transparent;
 }
 .nav-links{
-    padding: 28px 0;
+    padding: 25px 0;
 }
 .nav-links li{
-    display: inline-block;
-    margin: 0 15px;
+    display: inline-flex;
+    margin: 0 11px;
 }
 .nav-links li a{
     text-decoration: none;
     color: white;
-    padding: 5px 0;  
+    padding: 2px 0;  
     position: relative;
 }
 .nav-links li a::after{

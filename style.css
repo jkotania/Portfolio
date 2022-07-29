@@ -1,7 +1,7 @@
  /* Czcionka z google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Sans+Pro:wght@300&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap');
 
-/* Globalne zmiany */
+ /* Globalne zmiany */
 *{
     margin: 0;
     padding: 0;
@@ -16,6 +16,8 @@ ul{
 .active{
     color: darkslateblue;
     font-weight: bold;
+    font-size: 17px ;
+    text-decoration: underline 2px;
 }
 body,
 html{
@@ -35,7 +37,9 @@ html{
     color: white;
 }
 .navbar h1{
-    text-shadow: 1px 2px black;  
+    text-shadow: 2px 2px black;  
+    font-size: 22px;
+    font-family: 'Fredoka One', cursive;
 }
 .coq{
     text-decoration: none;
@@ -54,7 +58,7 @@ html{
 }
 .coq::after{
     content: "";
-    background: gray;
+    background: darkslateblue;
     width: 0%;
     height: 2px;
     position: absolute;
@@ -114,6 +118,26 @@ header{
 .ctn:hover{
     background-color: transparent;
     border: 1px solid darkslateblue;
+}
+.cotn{
+    padding: 8px 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    background: darkslateblue;
+    border-radius: 30px; 
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    -ms-transition: all 400ms ease-in-out; 
+    transition: all 400ms ease-in-out;
+    color: white;
+    border: 1px solid darkslateblue;
+    margin: 20px 0;
+}
+.cotn:hover{
+    background-color: transparent;
+    border: 1px solid darkslateblue;
+    color: black;
 }
 .menu-btn{
     position: absolute;
