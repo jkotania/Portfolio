@@ -34,8 +34,9 @@ nav{
     position: relative;
 }
 .logo{
-    width: 250px;
-    margin: 5px 0px;
+    width: 175px;
+    height: 48px;
+    margin: 10px 10px;
 }
 .nav-links{
     padding: 25px 0;

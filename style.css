@@ -15,9 +15,8 @@ ul{
 }
 .active{
     color: darkslateblue;
-    font-weight: bold;
-    font-size: 17px ;
-    text-decoration: underline 2px;
+    font-weight: bolder;
+    font-size: 18px;
 }
 body,
 html{
@@ -35,10 +34,13 @@ html{
     width: 100%;
     padding: 10px;
     color: white;
+    background:rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
 }
 .navbar .logo{
- width: 270px;
- height: 70px;
+ width: 175px;
+ height: 48px;
+ margin: 10px 15px;
 }
 
 .coq{
@@ -50,7 +52,7 @@ html{
 .nav-links{
     display: flex;
     align-items: center;
-    text-shadow: 1px 1px black;  
+    text-shadow: 1px 1px black;
 }
 .nav-links li{
     margin: 0 30px;
@@ -71,11 +73,11 @@ html{
 }
 header{
     width: 100vw;
-    height: 100vw;
-    background-image:url(./media/back.jpg);
+    height: 55vw;
+    background-image:url(./media/dream.png);
     background-position: bottom ;
     font-family: 'Poppins', sans-serif;
-    background-size: cover;
+    background-size:cover ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,8 +87,8 @@ header{
     text-align: center;
 }
 .header-content h2{
-    font-size: 4vmin;
-    text-shadow: 1px 1px black;  
+    font-size: 7vmin;
+    text-shadow: 3px 3px black;  
 }
 .line{
     width: 150px;
@@ -99,12 +101,12 @@ header{
     font-size: 5vmin;
     margin-top: 5px;
     margin-bottom: 10px;
-    text-shadow: 1px 2px black;  
+    text-shadow: 3px 3px black;  
 }
 .ctn{
     padding: 8px 15px;
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     background: darkslateblue;
     border-radius: 30px; 
     -webkit-transition: all 400ms ease-in-out;
@@ -122,7 +124,7 @@ header{
 .cotn{
     padding: 8px 15px;
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     background: darkslateblue;
     border-radius: 30px; 
     -webkit-transition: all 400ms ease-in-out;
@@ -132,7 +134,7 @@ header{
     transition: all 400ms ease-in-out;
     color: white;
     border: 1px solid darkslateblue;
-    margin: 20px 0;
+    top: 20px;
 }
 .cotn:hover{
     background-color: transparent;
@@ -201,6 +203,9 @@ margin: 30px;
 
     .menu-btn{
         display: block;
+    }
+    header{
+        height: 100vw;
     }
     .navbar{
         padding: 0;
