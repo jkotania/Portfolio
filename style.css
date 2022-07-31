@@ -36,11 +36,11 @@ html{
     padding: 10px;
     color: white;
 }
-.navbar h1{
-    text-shadow: 2px 2px black;  
-    font-size: 22px;
-    font-family: 'Fredoka One', cursive;
+.navbar .logo{
+ width: 270px;
+ height: 70px;
 }
+
 .coq{
     text-decoration: none;
     padding: 5px 0;  
@@ -75,7 +75,7 @@ header{
     background-image:url(./media/back.jpg);
     background-position: bottom ;
     font-family: 'Poppins', sans-serif;
-    background-size:cover ;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,9 +141,10 @@ header{
 }
 .menu-btn{
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 23px;
+    right: 20px;
     width: 40px;
+    height: 45px;
     cursor: pointer;
     display: none;
 }
@@ -204,10 +205,11 @@ margin: 30px;
     .navbar{
         padding: 0;
     }
-    .logo  {
-        position:absolute;
-        top: 30px;
-        left: 30px;
+    .navbar .logo{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 250px;
     }
     .nav-links{
         flex-direction: column;
