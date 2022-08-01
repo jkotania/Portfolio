@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600&display=swap');
 
 body{
-    background-color: darkslateblue;
+    background-color: slateblue;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -34,8 +34,8 @@ nav{
     position: relative;
 }
 .logo{
-    width: 175px;
-    height: 48px;
+    width: 270px;
+    height: 70px;
     margin: 10px 10px;
 }
 .nav-links{
@@ -107,11 +107,11 @@ input[type="email"]:focus
     outline: none;
 }
 .button {
-    background-color:  darkslateblue;
+    background-color:  slateblue;
     color: white;
     padding: 15px;
     margin: 18px 2px;
-    border: 1px solid darkslateblue;
+    border: 1px solid slateblue;
     border-radius: 10px;
     width: 100%;
     -webkit-transition: all 400ms ease-in-out;
@@ -144,15 +144,13 @@ label{
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 175px;
-    height: 48px;
 }
 .nav-links{
     flex-direction: column;
     width: 100%;
     height: 98vh;
     justify-content: center;
-    background: slateblue;
+    background: darkslateblue;
     border-radius: 15px;
     margin-top: -900px;
     transition: all 0.5s ease;

@@ -38,9 +38,9 @@ html{
     border-radius: 4px;
 }
 .navbar .logo{
- width: 175px;
- height: 48px;
- margin: 10px 15px;
+ width: 270px;
+ height: 70px;
+ margin: 5px 10px;
 }
 
 .coq{
@@ -215,8 +215,6 @@ margin: 30px;
         position: absolute;
         top: 10px;
         left: 10px;
-        width: 175px;
-        height: 48px;
     }
     .nav-links{
         flex-direction: column;
