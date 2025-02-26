@@ -11,7 +11,7 @@
 
 .dot-pattern {
   background-image: radial-gradient(
-          rgba(255, 255, 255, 0.25) 1px,
+          rgba(255, 255, 255, 0.15) 1px,
           transparent 1px
   );
   background-size: 50px 50px;

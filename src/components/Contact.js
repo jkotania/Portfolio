@@ -1,126 +1,262 @@
-// src/components/Contact.js
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [status, setStatus] = useState({
+        loading: false,
+        success: false,
+        error: null
+    });
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: {
+            opacity: 0,
+            y: 30,
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                duration: 0.6,
+                bounce: 0.3
+            }
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const lastSubmissionTime = localStorage.getItem('lastEmailSubmission');
+        const currentTime = new Date().getTime();
+        const COOLDOWN_PERIOD = 5 * 60 * 1000;
+
+        if (lastSubmissionTime && currentTime - parseInt(lastSubmissionTime) < COOLDOWN_PERIOD) {
+            const remainingTime = Math.ceil((parseInt(lastSubmissionTime) + COOLDOWN_PERIOD - currentTime) / 1000 / 60);
+            setStatus({
+                loading: false,
+                success: false,
+                error: `Please wait ${remainingTime} minute${remainingTime > 1 ? 's' : ''} before sending another message.`
+            });
+            return;
+        }
+
+        setStatus({ loading: true, success: false, error: null });
+
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to send message');
+            }
+
+            localStorage.setItem('lastEmailSubmission', currentTime.toString());
+            setStatus({ loading: false, success: true, error: null });
+            setFormData({ name: '', email: '', message: '' });
+
+            setTimeout(() => {
+                setStatus(prev => ({ ...prev, success: false }));
+            }, 5000);
+
+        } catch (error) {
+            console.error('Error:', error);
+            setStatus({
+                loading: false,
+                success: false,
+                error: 'Failed to send message. Please try again.'
+            });
+        }
+    };
+
     return (
         <section id="contact" className="min-h-[100dvh] flex flex-col justify-center snap-start py-16 px-6">
-            <div className="container mx-auto">
             <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-12"
-                >
-                    <h2 className="text-4xl font-bold text-mono-primary mb-4">
-                        Kontakt
-                    </h2>
-                    <p className="text-mono-secondary">
-                        Jestem otwarty na nowe projekty i współpracę. Napisz do mnie!
-                    </p>
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ amount: 0.2 }}
+                className="container mx-auto max-w-6xl bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-8"
+            >
+
+            <motion.div variants={itemVariants} className="text-center mb-12">
+                    <motion.h2
+                        variants={itemVariants}
+                        className="text-4xl md:text-5xl font-bold mb-4"
+                    >
+                        Contact
+                    </motion.h2>
+                    <motion.p
+                        variants={itemVariants}
+                        className="text-gray-400 max-w-2xl mx-auto"
+                    >
+                        Feel free to reach out if you're looking for a developer, have a question, or just want to connect.
+                    </motion.p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 gap-12">
-                    {/* Informacje kontaktowe */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="space-y-6"
-                    >
-                        <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 rounded-lg bg-mono-accent/10 flex items-center justify-center">
+                <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-12">
+                    {/* Contact Information */}
+                    <motion.div variants={itemVariants} className="space-y-6">
+                        <motion.div variants={itemVariants} className="flex items-center space-x-4">
+                            <motion.div variants={itemVariants} className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                                 <FaEnvelope className="text-mono-primary text-xl" />
-                            </div>
-                            <div>
+                            </motion.div>
+                            <motion.div variants={itemVariants}>
                                 <h3 className="text-mono-primary font-medium">Email</h3>
-                                <a href="mailto:kontakt@example.com"
-                                   className="text-mono-secondary hover:text-mono-primary transition-colors">
-                                    kontakt@example.com
+                                <a href="mailto:jkotania14@gmail.com"
+                                   className="text-gray-400 hover:text-blue-400 transition-colors">
+                                    jkotania14@gmail.com
                                 </a>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
 
-                        <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 rounded-lg bg-mono-accent/10 flex items-center justify-center">
-                                <FaPhone className="text-mono-primary text-xl" />
-                            </div>
-                            <div>
-                                <h3 className="text-mono-primary font-medium">Telefon</h3>
-                                <a href="tel:+48123456789"
-                                   className="text-mono-secondary hover:text-mono-primary transition-colors">
-                                    +48 123 456 789
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="flex items-center space-x-4">
-                            <div className="w-12 h-12 rounded-lg bg-mono-accent/10 flex items-center justify-center">
+                        <motion.div variants={itemVariants} className="flex items-center space-x-4">
+                            <motion.div variants={itemVariants} className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
                                 <FaMapMarkerAlt className="text-mono-primary text-xl" />
-                            </div>
-                            <div>
-                                <h3 className="text-mono-primary font-medium">Lokalizacja</h3>
-                                <p className="text-mono-secondary">Warszawa, Polska</p>
-                            </div>
-                        </div>
+                            </motion.div>
+                            <motion.div variants={itemVariants}>
+                                <h3 className="text-mono-primary font-medium">Location</h3>
+                                <p className="text-gray-400">Silesia, Poland</p>
+                            </motion.div>
+                        </motion.div>
 
-                        <div className="flex space-x-4 pt-6">
-                            <a href="https://github.com"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               className="w-10 h-10 rounded-lg bg-mono-accent/10 flex items-center justify-center text-mono-secondary hover:text-mono-primary hover:bg-mono-accent/20 transition-colors">
+                        <motion.div variants={itemVariants} className="flex space-x-4 pt-6">
+                            <motion.a
+                                variants={itemVariants}
+                                href="https://github.com/jkotania"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.1 }}
+                                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20 transition-all"
+                            >
                                 <FaGithub className="text-xl" />
-                            </a>
-                            <a href="https://linkedin.com"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               className="w-10 h-10 rounded-lg bg-mono-accent/10 flex items-center justify-center text-mono-secondary hover:text-mono-primary hover:bg-mono-accent/20 transition-colors">
+                            </motion.a>
+                            <motion.a
+                                variants={itemVariants}
+                                href="https://www.linkedin.com/in/jan-kotania/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ scale: 1.1 }}
+                                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20 transition-all"
+                            >
                                 <FaLinkedin className="text-xl" />
-                            </a>
-                        </div>
+                            </motion.a>
+                        </motion.div>
                     </motion.div>
 
-                    {/* Formularz kontaktowy */}
+                    {/* Contact Form */}
                     <motion.form
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        variants={itemVariants}
                         className="space-y-4"
-                        onSubmit={(e) => e.preventDefault()}
+                        onSubmit={handleSubmit}
                     >
-                        <div>
+                        <motion.div variants={itemVariants}>
                             <input
                                 type="text"
-                                placeholder="Imię i nazwisko"
-                                className="w-full px-4 py-3 bg-mono-accent/10 border border-mono-accent/20 rounded-lg focus:outline-none focus:border-mono-primary text-mono-primary placeholder-mono-secondary/70 transition-colors"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                placeholder="Full Name"
+                                required
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors"
                             />
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div variants={itemVariants}>
                             <input
                                 type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
                                 placeholder="Email"
-                                className="w-full px-4 py-3 bg-mono-accent/10 border border-mono-accent/20 rounded-lg focus:outline-none focus:border-mono-primary text-mono-primary placeholder-mono-secondary/70 transition-colors"
+                                required
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors"
                             />
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div variants={itemVariants}>
                             <textarea
-                                placeholder="Twoja wiadomość"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                placeholder="Your Message"
+                                required
                                 rows="5"
-                                className="w-full px-4 py-3 bg-mono-accent/10 border border-mono-accent/20 rounded-lg focus:outline-none focus:border-mono-primary text-mono-primary placeholder-mono-secondary/70 transition-colors resize-none"
-                            ></textarea>
-                        </div>
+                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors resize-none"
+                            />
+                        </motion.div>
                         <motion.button
+                            variants={itemVariants}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full py-3 px-6 bg-mono-accent/10 border border-mono-primary text-mono-primary hover:bg-mono-primary hover:text-mono-background rounded-lg transition-colors duration-300"
+                            disabled={status.loading}
+                            className={`w-full py-3 px-6 bg-white/5 border border-white/10 text-mono-primary hover:text-blue-400 hover:border-blue-400 rounded-xl transition-all duration-300 ${
+                                status.loading ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
                         >
-                            Wyślij wiadomość
+                            {status.loading ? 'Sending...' : 'Send Message'}
                         </motion.button>
+
+                        {status.success && (
+                            <motion.p
+                                variants={itemVariants}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="text-green-500 text-center"
+                            >
+                                Message sent successfully!
+                            </motion.p>
+                        )}
+                        {status.error && (
+                            <motion.p
+                                variants={itemVariants}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="text-red-500 text-center"
+                            >
+                                {status.error}
+                            </motion.p>
+                        )}
                     </motion.form>
-                </div>
-            </div>
+                </motion.div>
+
+                <motion.p
+                    variants={itemVariants}
+                    className="text-center text-gray-400 mt-8 text-sm"
+                >
+                    Response time: Usually within 24 hours
+                </motion.p>
+            </motion.div>
         </section>
     );
 }

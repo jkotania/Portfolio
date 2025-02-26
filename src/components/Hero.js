@@ -54,8 +54,13 @@ export default function Hero() {
         const isMobile = window.innerWidth <= 768;
         const mobileUIHeight = isMobile ? window.visualViewport.height - window.innerHeight : 0;
 
-        const x = ballPos.x - textRect.left;
-        const y = ballPos.y - textRect.top - mobileUIHeight;
+        // Dodajemy scroll position do obliczeń
+        const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Obliczamy pozycję piłki względem elementu, uwzględniając przewijanie
+        const x = ballPos.x - textRect.left - scrollX;
+        const y = ballPos.y - textRect.top - scrollY - mobileUIHeight;
 
         const dynamicRadius = ballPos.radius * (isMobile ? 2 : 2);
 
@@ -81,7 +86,7 @@ export default function Hero() {
                 <PongBackground onBallPositionChange={handleBallPosition} />
             </div>
 
-            <div className="relative z-10 container mx-auto px-6 text-center">
+            <div className="relative  container mx-auto px-6 text-center">
                 <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}

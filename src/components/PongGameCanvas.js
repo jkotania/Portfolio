@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
 
-const PongBackground = ({ onBallPositionChange }) => {
+const PongBackground = ({ onBallPositionChange, navbarHeight = 80 }) => {
     const canvasRef = useRef(null);
     const [gameStarted, setGameStarted] = useState(false);
     const ballRef = useRef({ x: 50, y: 50, speedX: 0.3, speedY: 0.3, size: 1 });
@@ -125,10 +125,12 @@ const PongBackground = ({ onBallPositionChange }) => {
         ball.x += ball.speedX * dt;
         ball.y += ball.speedY * dt;
 
-        // Kolizje ze ścianami (góra/dół)
-        if (ball.y - actualBallSize/2 <= 0) {
+
+        const navbarHeightPercent = (navbarHeight / window.innerHeight) * 100;
+
+        if (ball.y - actualBallSize/2 <= navbarHeightPercent) {
             ball.speedY = Math.abs(ball.speedY);
-            ball.y = actualBallSize/2;
+            ball.y = navbarHeightPercent + actualBallSize/2;
         }
         if (ball.y + actualBallSize/2 >= 100) {
             ball.speedY = -Math.abs(ball.speedY);
@@ -157,7 +159,7 @@ const PongBackground = ({ onBallPositionChange }) => {
             const targetY = predictedY + (ball.speedY * reactionDelay * 100);
 
             // Ogranicz target do obszaru gry uwzględniając wielkość paletki
-            const minTarget = paddleHeight/2 + 2;
+            const minTarget = navbarHeightPercent + paddleHeight/2 + 2;
             const maxTarget = 100 - paddleHeight/2 - 2;
             const clampedTarget = Math.min(Math.max(targetY, minTarget), maxTarget);
 
@@ -199,8 +201,10 @@ const PongBackground = ({ onBallPositionChange }) => {
         updatePaddleAI(rightPaddleRef.current, false);
 
         // Ograniczenie ruchu paletek
-        leftPaddle.y = Math.max(leftPaddle.height / 2, Math.min(100 - leftPaddle.height / 2, leftPaddle.y));
-        rightPaddle.y = Math.max(rightPaddle.height / 2, Math.min(100 - rightPaddle.height / 2, rightPaddle.y));
+        leftPaddle.y = Math.max(navbarHeightPercent + leftPaddle.height / 2,
+            Math.min(100 - leftPaddle.height / 2, leftPaddle.y));
+        rightPaddle.y = Math.max(navbarHeightPercent + rightPaddle.height / 2,
+            Math.min(100 - rightPaddle.height / 2, rightPaddle.y));
     };
 
     const drawRoundedRect = (ctx, x, y, width, height, radius) => {
@@ -211,7 +215,7 @@ const PongBackground = ({ onBallPositionChange }) => {
         ctx.arcTo(x, y + height, x, y, radius);
         ctx.arcTo(x, y, x + width, y, radius);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(60,60,60,1)';
+        ctx.fillStyle = 'rgba(255,255,255,1)';
         ctx.fill();
     };
 
@@ -225,7 +229,7 @@ const PongBackground = ({ onBallPositionChange }) => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Rysuj piłkę
-        ctx.fillStyle = 'rgba(60,60,60,1)';
+        ctx.fillStyle = 'rgba(255,255,255,1)';
         const ball = ballRef.current;
         const ballX = (ball.x / 100) * canvas.width;
         const ballY = (ball.y / 100) * canvas.height;
