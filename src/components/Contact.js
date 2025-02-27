@@ -16,11 +16,15 @@ export default function Contact() {
     });
 
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: {
+            opacity: 0
+        },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2
+                duration: 0.5,
+                ease: "easeOut",
+                staggerChildren: 0.1 // Zmniejszono opóźnienie między elementami
             }
         }
     };
@@ -28,18 +32,41 @@ export default function Contact() {
     const itemVariants = {
         hidden: {
             opacity: 0,
-            y: 30,
+            y: 15,
         },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                type: "spring",
-                duration: 0.6,
-                bounce: 0.3
+                duration: 0.4,
+                ease: [0.25, 0.1, 0.25, 1], // Płynniejsza krzywa przejścia
             }
         }
     };
+
+// Nowy wariant dla przycisków social media
+    const socialButtonVariants = {
+        hidden: {
+            opacity: 0,
+            scale: 0.95
+        },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.3,
+                ease: "easeOut"
+            }
+        },
+        hover: {
+            scale: 1.05,
+            transition: {
+                duration: 0.2,
+                ease: "easeInOut"
+            }
+        }
+    };
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -152,9 +179,9 @@ export default function Contact() {
                             </motion.div>
                         </motion.div>
 
-                        <motion.div variants={itemVariants} className="flex space-x-4 pt-6">
+                        <motion.div variants={socialButtonVariants} className="flex space-x-4 pt-6">
                             <motion.a
-                                variants={itemVariants}
+                                variants={socialButtonVariants}
                                 href="https://github.com/jkotania"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -164,7 +191,7 @@ export default function Contact() {
                                 <FaGithub className="text-xl" />
                             </motion.a>
                             <motion.a
-                                variants={itemVariants}
+                                variants={socialButtonVariants}
                                 href="https://www.linkedin.com/in/jan-kotania/"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -216,7 +243,7 @@ export default function Contact() {
                             />
                         </motion.div>
                         <motion.button
-                            variants={itemVariants}
+                            variants={socialButtonVariants}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                             disabled={status.loading}

@@ -11,7 +11,7 @@
 
 .dot-pattern {
   background-image: radial-gradient(
-          rgba(255, 255, 255, 0.15) 1px,
+          rgba(255, 255, 255, 0.32) 1px,
           transparent 1px
   );
   background-size: 50px 50px;
@@ -20,6 +20,7 @@
 body {
   background-color: theme('colors.mono.background');
   color: theme('colors.mono.primary');
+  overflow-x: hidden;
 }
 section {
   scroll-margin-top: 32px; /* wysokość navbara */

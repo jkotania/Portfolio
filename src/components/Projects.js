@@ -107,11 +107,15 @@ const ColoredProjectTitle = ({ title }) => {
 };
 export default function Projects() {
     const containerVariants = {
-        hidden: { opacity: 0 },
+        hidden: {
+            opacity: 0
+        },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2
+                duration: 0.5,
+                ease: "easeOut",
+                staggerChildren: 0.15
             }
         }
     };
@@ -119,18 +123,18 @@ export default function Projects() {
     const projectVariants = {
         hidden: {
             opacity: 0,
-            y: 30,
+            y: 20,
         },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                type: "spring",
-                duration: 0.6,
-                bounce: 0.3
+                duration: 0.5,
+                ease: [0.645, 0.045, 0.355, 1],
             }
         }
     };
+
 
     return (
         <section id="projects" className="py-20 snap-start snap-always flex items-center justify-center px-6">

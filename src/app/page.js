@@ -8,11 +8,11 @@ import Contact from '../components/Contact';
 
 export default function Home() {
     return (
-        <div className="relative min-h-screen bg-[#0a0a0a]">
+        <div className="relative min-h-screen bg-[#0a0a0a] overflow-x-hidden w-full">
             <div className="fixed inset-0 dot-pattern opacity-50"></div>
-            <div className="relative z-10">
+            <div className="relative z-10 w-full">
                 <Navbar />
-                <main className="snap-y snap-mandatory overflow-y-scroll">
+                <main className="overflow-x-hidden">
                     <Hero />
                     <Projects />
                     <Skills />
@@ -22,6 +22,7 @@ export default function Home() {
         </div>
     );
 }
+
 
 
 

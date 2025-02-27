@@ -55,7 +55,7 @@ const TextWithGradients = () => {
             />
             {' '}
             <motion.span
-                className="inline-block text-2xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500 whitespace-nowrap"
+                className="inline-block text-2xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 whitespace-nowrap"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
