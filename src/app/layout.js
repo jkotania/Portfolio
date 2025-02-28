@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
     title: "Portfolio - Jan Kotania | Fullstack Developer",
-    description: "Portfolio prezentujące doświadczenie oraz umiejętności programowania w JavaScript i nie tylko. Jan Kotania to pasjonat nowych technologii oraz doświadczony Developer specjalizujący się w React, Next.js i nowoczesnych rozwiązaniach webowych. Tworzy szybkie, responsywne i intuicyjne aplikacje internetowe, dbając o jakość kodu, optymalizację wydajności oraz najlepsze praktyki UX/UI.",
+    description: "Portfolio showcasing experience and programming skills in JavaScript and beyond. Jan Kotania is a passionate developer of new technologies and an experienced Developer specializing in React, Next.js and modern web solutions. He creates fast, responsive and intuitive web applications, taking care of code quality, performance optimization and UX/UI best practices.",
 
     keywords: [
         'Jan Kotania', 'jkotania', 'frontend developer', 'fullstack developer',
@@ -27,18 +27,18 @@ export const metadata = {
     author: "Jan Kotania",
 
     icons: {
-        icon: [
-            { rel: 'icon', url: 'https://jkotania.tech/favicon.ico' },
-            { rel: 'apple-touch-icon', url: 'https://jkotania.tech/favicon.ico' },
-        ],
+        icon: '/favicon.ico',
+        shortcut: '/favicon.ico',
+        apple: '/apple-touch-icon.png',
     },
+
 
     openGraph: {
         title: 'Portfolio - Jan Kotania | Fullstack Developer',
-        description: 'Portfolio doświadczonego FullStack Developera Jana Kotani, specjalizującego się w React, Next.js i nowoczesnych technologiach webowych.',
+        description: 'Portfolio of experienced FullStack Developer Jan Kotania, specializing in React, Next.js and modern web technologies',
         url: 'https://jkotania.tech',
-        siteName: 'Jan Kotania Portfolio',
-        locale: 'pl_PL',
+        siteName: 'Portfolio - Jan Kotania | Fullstack Developer',
+        locale: 'en_EN',
         type: 'website',
     },
     robots: {
@@ -60,6 +60,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
     <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
     </head>
       <body
