@@ -3,33 +3,29 @@ import { NextResponse } from "next/server";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Helper function to add CORS headers
-function corsResponse(body, status = 200) {
-  const response = NextResponse.json(body, { status });
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-  return response;
-}
-
-// Handle OPTIONS requests (CORS preflight)
 export async function OPTIONS() {
-  return corsResponse(null, 204);
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
 }
 
-// Handle POST requests
 export async function POST(req) {
   try {
-    // Parse the request body
     const body = await req.json();
     const { name, email, message } = body;
 
-    // Basic validation
     if (!name || !email || !message) {
-      return corsResponse({ error: "All fields are required" }, 400);
+      return NextResponse.json(
+        { error: "All fields are required" },
+        { status: 400 }
+      );
     }
 
-    // Send email using Resend
     const emailData = await resend.emails.send({
       from: "Contact Form <contact@jkotania.tech>",
       to: ["portfoliojankotania@gmail.com"],
@@ -38,10 +34,12 @@ export async function POST(req) {
       reply_to: email,
     });
 
-    // Return success response
-    return corsResponse({ success: true, data: emailData });
+    return NextResponse.json({ success: true, data: emailData });
   } catch (error) {
     console.error("Email sending error:", error);
-    return corsResponse({ error: "Failed to send message" }, 500);
+    return NextResponse.json(
+      { error: "Failed to send message" },
+      { status: 500 }
+    );
   }
 }
