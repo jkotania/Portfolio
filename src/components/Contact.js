@@ -1,3 +1,4 @@
+// src/components/Contact.js
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -29,7 +30,7 @@ export default function Contact() {
       transition: {
         duration: 0.5,
         ease: "easeOut",
-        staggerChildren: 0.1, // Zmniejszono opóźnienie między elementami
+        staggerChildren: 0.1,
       },
     },
   };
@@ -44,12 +45,11 @@ export default function Contact() {
       y: 0,
       transition: {
         duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1], // Płynniejsza krzywa przejścia
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
-  // Nowy wariant dla przycisków social media
   const socialButtonVariants = {
     hidden: {
       opacity: 0,
@@ -72,44 +72,19 @@ export default function Contact() {
     },
   };
 
+  // Funkcja aktualizująca stan formularza przy zmianie wartości inputów/textarea
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Funkcja obsługująca wysyłkę formularza
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const lastSubmissionTime = localStorage.getItem("lastEmailSubmission");
-    const currentTime = new Date().getTime();
-    const COOLDOWN_PERIOD = 5 * 60 * 1000;
-
-    if (
-      lastSubmissionTime &&
-      currentTime - parseInt(lastSubmissionTime) < COOLDOWN_PERIOD
-    ) {
-      const remainingTime = Math.ceil(
-        (parseInt(lastSubmissionTime) + COOLDOWN_PERIOD - currentTime) /
-          1000 /
-          60
-      );
-      setStatus({
-        loading: false,
-        success: false,
-        error: `Please wait ${remainingTime} minute${
-          remainingTime > 1 ? "s" : ""
-        } before sending another message.`,
-      });
-      return;
-    }
-
     setStatus({ loading: true, success: false, error: null });
 
     try {
-      const response = await fetch("/api/send", {
+      const res = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,25 +92,23 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
+      if (data.success) {
+        setStatus({ loading: false, success: true, error: null });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({
+          loading: false,
+          success: false,
+          error: data.error || "Wystąpił błąd podczas wysyłki wiadomości.",
+        });
       }
-
-      localStorage.setItem("lastEmailSubmission", currentTime.toString());
-      setStatus({ loading: false, success: true, error: null });
-      setFormData({ name: "", email: "", message: "" });
-
-      setTimeout(() => {
-        setStatus((prev) => ({ ...prev, success: false }));
-      }, 5000);
     } catch (error) {
-      console.error("Error:", error);
       setStatus({
         loading: false,
         success: false,
-        error: "Failed to send message. Please try again.",
+        error: error.message || "Wystąpił błąd podczas wysyłki wiadomości.",
       });
     }
   };
