@@ -38,8 +38,32 @@ export async function POST(req) {
       );
     }
 
-    const { name, email, message } = await req.json();
+    // Bezpieczne parsowanie JSON
+    let body;
+    try {
+      body = await req.json();
+    } catch (e) {
+      console.error("Failed to parse JSON:", e);
+      return addCorsHeaders(
+        NextResponse.json({ error: "Invalid JSON format" }, { status: 400 })
+      );
+    }
 
+    // Sprawdź czy mamy wszystkie wymagane pola
+    const { name, email, message } = body || {};
+
+    if (!name || !email || !message) {
+      return addCorsHeaders(
+        NextResponse.json(
+          { error: "Missing required fields: name, email, and message" },
+          { status: 400 }
+        )
+      );
+    }
+
+    console.log("Sending email with data:", { name, email, message });
+
+    // Wysyłka emaila
     const data = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
       to: ["portfoliojankotania@gmail.com"],
@@ -51,6 +75,8 @@ export async function POST(req) {
             `,
     });
 
+    console.log("Email sent successfully:", data);
+
     // Zapisz czas żądania dla danego IP
     requestLog.set(ip, now);
 
@@ -58,12 +84,15 @@ export async function POST(req) {
   } catch (error) {
     console.error("Error sending email:", error);
     return addCorsHeaders(
-      NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+      NextResponse.json(
+        { error: "Failed to send email", details: error.message },
+        { status: 500 }
+      )
     );
   }
 }
 
 // Obsługa preflight CORS
-export function OPTIONS() {
-  return addCorsHeaders(new NextResponse(null, { status: 204 }));
+export async function OPTIONS() {
+  return addCorsHeaders(NextResponse.json({}, { status: 200 }));
 }
