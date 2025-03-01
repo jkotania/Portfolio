@@ -7,6 +7,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const requestLog = new Map();
 const COOLDOWN_PERIOD = 5 * 60 * 1000; // 5 minut
 
+// Helper dodający nagłówki CORS do odpowiedzi
+function addCorsHeaders(response) {
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+  return response;
+}
+
 export async function POST(req) {
   try {
     // Pobierz IP użytkownika (w Next.js 13+)
@@ -20,12 +28,14 @@ export async function POST(req) {
       const remainingTime = Math.ceil(
         (COOLDOWN_PERIOD - (now - lastRequest)) / 1000 / 60
       );
-      return NextResponse.json(
-        {
-          error: `Please wait ${remainingTime} minutes before sending another message.`,
-        },
-        { status: 429 }
-      ); // Too Many Requests
+      return addCorsHeaders(
+        NextResponse.json(
+          {
+            error: `Please wait ${remainingTime} minutes before sending another message.`,
+          },
+          { status: 429 }
+        )
+      );
     }
 
     const { name, email, message } = await req.json();
@@ -44,12 +54,16 @@ export async function POST(req) {
     // Zapisz czas żądania dla danego IP
     requestLog.set(ip, now);
 
-    return NextResponse.json({ success: true, data });
+    return addCorsHeaders(NextResponse.json({ success: true, data }));
   } catch (error) {
     console.error("Error sending email:", error);
-    return NextResponse.json(
-      { error: "Failed to send email" },
-      { status: 500 }
+    return addCorsHeaders(
+      NextResponse.json({ error: "Failed to send email" }, { status: 500 })
     );
   }
+}
+
+// Obsługa preflight CORS
+export function OPTIONS() {
+  return addCorsHeaders(new NextResponse(null, { status: 204 }));
 }

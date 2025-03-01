@@ -83,11 +83,32 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const lastSubmissionTime = localStorage.getItem("lastEmailSubmission");
+    const currentTime = new Date().getTime();
+    const COOLDOWN_PERIOD = 5 * 60 * 1000;
+
+    if (
+      lastSubmissionTime &&
+      currentTime - parseInt(lastSubmissionTime) < COOLDOWN_PERIOD
+    ) {
+      const remainingTime = Math.ceil(
+        (parseInt(lastSubmissionTime) + COOLDOWN_PERIOD - currentTime) /
+          1000 /
+          60
+      );
+      setStatus({
+        loading: false,
+        success: false,
+        error: `Please wait ${remainingTime} minute${
+          remainingTime > 1 ? "s" : ""
+        } before sending another message.`,
+      });
+      return;
+    }
+
     setStatus({ loading: true, success: false, error: null });
 
     try {
-      console.log("Sending data:", formData);
-
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
@@ -96,32 +117,25 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      console.log("Response status:", response.status);
-      const responseText = await response.text();
-      console.log("Response text:", responseText);
-
-      // Parse JSON if there's response text
-      const data = responseText ? JSON.parse(responseText) : {};
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          data.error || `Request failed with status ${response.status}`
-        );
+        throw new Error(data.error || "Failed to send message");
       }
 
+      localStorage.setItem("lastEmailSubmission", currentTime.toString());
       setStatus({ loading: false, success: true, error: null });
       setFormData({ name: "", email: "", message: "" });
 
-      // Reset success message after 5 seconds
       setTimeout(() => {
         setStatus((prev) => ({ ...prev, success: false }));
       }, 5000);
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("Error:", error);
       setStatus({
         loading: false,
         success: false,
-        error: error.message || "Failed to send message. Please try again.",
+        error: "Failed to send message. Please try again.",
       });
     }
   };
