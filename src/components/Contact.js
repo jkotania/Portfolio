@@ -85,7 +85,7 @@ export default function Contact() {
 
     const lastSubmissionTime = localStorage.getItem("lastEmailSubmission");
     const currentTime = new Date().getTime();
-    const COOLDOWN_PERIOD = 5 * 60 * 1000;
+    const COOLDOWN_PERIOD = 5 * 60 * 1000; // 5 minutes in milliseconds
 
     if (
       lastSubmissionTime &&
@@ -117,10 +117,26 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      // Log the response for debugging
+      console.log("Response status:", response.status);
+
+      // Get the response text first for debugging
+      const responseText = await response.text();
+      console.log("Response text:", responseText);
+
+      // Try to parse as JSON if not empty
+      let data;
+      try {
+        data = responseText ? JSON.parse(responseText) : {};
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        throw new Error("Invalid response format");
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send message");
+        throw new Error(
+          data.error || `Request failed with status ${response.status}`
+        );
       }
 
       localStorage.setItem("lastEmailSubmission", currentTime.toString());
@@ -135,7 +151,7 @@ export default function Contact() {
       setStatus({
         loading: false,
         success: false,
-        error: "Failed to send message. Please try again.",
+        error: error.message || "Failed to send message. Please try again.",
       });
     }
   };
