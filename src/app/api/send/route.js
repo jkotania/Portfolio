@@ -12,7 +12,7 @@ export async function POST(request) {
 
     // Wysyłka e-maila przy użyciu Resend
     const data = await resend.emails.send({
-      from: "contact@jkotania.tech",
+      from: "Portfolio <onboarding@resend.dev>",
       to: "portfoliojankotania@gmail.com",
       subject: "Formularz kontaktowy ze strony portfolio",
       html: `
