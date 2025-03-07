@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from '@/app/hooks/useTranslations';
 import {
   FaGithub,
   FaLinkedin,
@@ -9,6 +10,7 @@ import {
 } from "react-icons/fa";
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,9 +79,7 @@ export default function Contact() {
       setStatus({
         loading: false,
         success: false,
-        error: `Please wait ${remainingTime} minute${
-          remainingTime > 1 ? "s" : ""
-        } before sending another message.`,
+        error: t.contact.form.cooldown(remainingTime),
       });
       return;
     }
@@ -135,14 +135,13 @@ export default function Contact() {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-4"
           >
-            Contact
+            {t.contact.title}
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="text-gray-400 max-w-2xl mx-auto"
           >
-            Feel free to reach out if you&apos;re looking for a developer, have
-            a question, or just want to connect.
+            {t.contact.subtitle}
           </motion.p>
         </motion.div>
 
@@ -163,7 +162,7 @@ export default function Contact() {
                 <FaEnvelope className="text-mono-primary text-xl" />
               </motion.div>
               <motion.div variants={itemVariants}>
-                <h3 className="text-mono-primary font-medium">Email</h3>
+                <h3 className="text-mono-primary font-medium">{t.contact.email.label}</h3>
                 <a
                   href="mailto:jkotania14@gmail.com"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
@@ -184,8 +183,8 @@ export default function Contact() {
                 <FaMapMarkerAlt className="text-mono-primary text-xl" />
               </motion.div>
               <motion.div variants={itemVariants}>
-                <h3 className="text-mono-primary font-medium">Location</h3>
-                <p className="text-gray-400">Silesia, Poland</p>
+                <h3 className="text-mono-primary font-medium">{t.contact.location.label}</h3>
+                <p className="text-gray-400">{t.contact.location.value}</p>
               </motion.div>
             </motion.div>
 
@@ -228,7 +227,7 @@ export default function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Full Name"
+                placeholder={t.contact.form.name}
                 required
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors"
               />
@@ -239,7 +238,7 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder={t.contact.email.placeholder}
                 required
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors"
               />
@@ -249,7 +248,7 @@ export default function Contact() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Your Message"
+                placeholder={t.contact.form.message}
                 required
                 rows="5"
                 className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:outline-none focus:border-blue-400 text-mono-primary placeholder-gray-500 transition-colors resize-none"
@@ -264,7 +263,7 @@ export default function Contact() {
                 status.loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
-              {status.loading ? "Sending..." : "Send Message"}
+              {status.loading ? t.contact.form.sending : t.contact.form.send}
             </motion.button>
 
             {status.success && (
@@ -274,7 +273,7 @@ export default function Contact() {
                 animate={{ opacity: 1 }}
                 className="text-green-500 text-center"
               >
-                Message sent successfully!
+                {t.contact.form.success}
               </motion.p>
             )}
             {status.error && (
@@ -294,7 +293,7 @@ export default function Contact() {
           variants={itemVariants}
           className="text-center text-gray-400 mt-8 text-sm"
         >
-          Response time: Usually within 24 hours
+          {t.contact.responseTime}
         </motion.p>
       </motion.div>
     </section>

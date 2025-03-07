@@ -19,9 +19,10 @@ import {
     SiPython
 } from 'react-icons/si';
 import { AiOutlinePlus } from 'react-icons/ai';
-
+import { useTranslation } from '@/app/hooks/useTranslations';
 
 export default function Skills() {
+    const { t } = useTranslation();
     const skills = [
         {
             name: "Next.js",
@@ -146,7 +147,7 @@ export default function Skills() {
                     viewport={{ once: true }}
                     className="text-4xl font-bold text-mono-primary mb-12 text-center"
                 >
-                    Skills
+                    {t.skills.name}
                 </motion.h2>
                 <motion.div
                     className="grid grid-cols-2 md:grid-cols-4 gap-8"

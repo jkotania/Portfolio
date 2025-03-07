@@ -4,8 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import { FaFileDownload } from "react-icons/fa";
 import { useAnalytics } from "@/app/hooks/useAnalytics";
+import { useTranslation } from '@/app/hooks/useTranslations';
 
 export default function ResumePopup({ isOpen, onClose }) {
+  const { t } = useTranslation();
   const { trackEvent } = useAnalytics();
   if (!isOpen) return null;
   const handleDownload = async (language, url) => {
@@ -95,7 +97,7 @@ export default function ResumePopup({ isOpen, onClose }) {
           </button>
 
           <h2 className="text-2xl font-bold text-mono-primary mb-4 text-center">
-            Select Resume Version
+            {t.resumePopup.title}
           </h2>
 
           <div className="space-y-4">
@@ -113,7 +115,7 @@ export default function ResumePopup({ isOpen, onClose }) {
             >
               <span className="flex items-center gap-3">
                 <FaFileDownload />
-                English Version
+                {t.resumePopup.englishVersion}
               </span>
               <span className="text-sm text-gray-400">EN</span>
             </motion.a>
@@ -132,7 +134,7 @@ export default function ResumePopup({ isOpen, onClose }) {
             >
               <span className="flex items-center gap-3">
                 <FaFileDownload />
-                Polish Version
+                {t.resumePopup.polishVersion}
               </span>
               <span className="text-sm text-gray-400">PL</span>
             </motion.a>

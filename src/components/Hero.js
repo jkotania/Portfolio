@@ -3,11 +3,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import PongBackground from './PongGameCanvas';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import TextWithGradients from '../app/text_with_gradients';
-
-
+import TextWithGradients from './text_with_gradients';
+import { useTranslation } from '@/app/hooks/useTranslations';
 
 export default function Hero() {
+    const { t } = useTranslation();
     const textRef = useRef(null);
     const maskRef = useRef(null);
     const [textDimensions, setTextDimensions] = useState({ width: 0, height: 0 });
@@ -103,7 +103,7 @@ export default function Hero() {
                                 ,
                             }}
                         >
-                            Full Stack & Mobile Developer
+                            {t.hero.title}
                             {/* Warstwa z wypełnieniem */}
                             <span
                                 className="text-fill absolute inset-0 text-6xl lg:text-7xl font-bold"
@@ -113,7 +113,7 @@ export default function Hero() {
                                     WebkitTextFillColor: 'white',
                                 }}
                             >
-                                Full Stack & Mobile Developer
+                                {t.hero.title}
                             </span>
                         </h1>
                         <canvas
@@ -133,16 +133,29 @@ export default function Hero() {
 
 
                     <div className="flex justify-center space-x-6">
-                        <a href="https://github.com/jkotania" target="_blank" rel="noopener noreferrer"
-                           className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl">
+                        <a 
+                            href="https://github.com/jkotania" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl"
+                            aria-label={t.hero.links.github}
+                        >
                             <FaGithub />
                         </a>
-                        <a href="https://www.linkedin.com/in/jan-kotania/" target="_blank" rel="noopener noreferrer"
-                           className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl">
+                        <a 
+                            href="https://www.linkedin.com/in/jan-kotania/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl"
+                            aria-label={t.hero.links.linkedin}
+                        >
                             <FaLinkedin />
                         </a>
-                        <a href="mailto:jkotania14@gmail.com"
-                           className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl">
+                        <a 
+                            href="mailto:jkotania14@gmail.com"
+                            className="text-mono-secondary hover:text-mono-primary transition-colors text-2xl"
+                            aria-label={t.hero.links.email}
+                        >
                             <FaEnvelope />
                         </a>
                     </div>

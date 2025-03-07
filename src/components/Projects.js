@@ -1,111 +1,115 @@
 "use client"
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/app/hooks/useTranslations';
 
-const projects = [
+export default function Projects() {
+    const { t } = useTranslation();
+
+    const projects = [
         {
             title: "Mogo",
-            description: "Website for a fictional furniture company with authentication system.",
+            description: t.projects.items.mogo.description,
             tech: ["Next.js", "Tailwind CSS", "Supabase", "Auth"],
-            type: "Website",
+            type: t.projects.items.mogo.type,
             link: "https://mogo-ruby.vercel.app/",
             image: "/mogo-preview.png"
         },
         {
             title: "Kombuczara",
-            description: "Website created to promote fermented tea in Poland by an influencer known as 'Kombuczara'.",
+            description: t.projects.items.kombuczara.description,
             tech: ["Zyro", "JavaScript","API","UX/UI", "Figma"],
-            type: "Website",
+            type: t.projects.items.kombuczara.type,
             link: "https://kombuczara.com/",
             image: "/kombuczara-preview.png"
         },
         {
             title: "FoodAR",
-            description: "Mobile application with object detection functionality. Uses YOLO AI model for object recognition and Firebase for data storage.",
+            description: t.projects.items.foodar.description,
             tech: ["Flutter", "Firebase", "YOLO AI", "TensorFlow Lite","Figma"],
-            type: "Mobile App with AI",
+            type: t.projects.items.foodar.type,
             image: "/mobile-preview.png"
         },
         {
             title: "LogiX",
-            description: "Platform for software development companies. Frontend built with Next.js using Tailwind CSS.",
+            description: t.projects.items.logix.description,
             tech: ["Next.js", "Tailwind CSS"],
-            type: "Website",
+            type: t.projects.items.logix.type,
             link: "https://logix-gilt.vercel.app/",
             image: "/logix-preview.png"
         },
         {
             title: "Portfolio",
-            description: "Exactly the same website you're on right now where you can learn more about me. :P",
+            description: t.projects.items.portfolio.description,
             tech: ["Next.js", "Tailwind CSS"],
-            type: "Website",
+            type: t.projects.items.portfolio.type,
             image: "/portfolio-preview.png"
         },
         {
             title: "Radio Silesia",
-            description: "A fully functional prototype created specifically for collaboration with Radio Silesia. Achieved the highest ratings in the competition.",
+            description: t.projects.items.radioSilesia.description,
             tech: ["Figma", "UX/UI","Mobile"],
-            type: "Design",
+            type: t.projects.items.radioSilesia.type,
             image: "/radio-preview.png"
         }
     ];
 
-const ColoredProjectTitle = ({ title }) => {
-    const colorMapping = {
-        "LogiX": (
-            <span>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8e8e8e] via-[#f0f0f0] to-[#8e8e8e] font-bold tracking-wide">
-                    LogiX
+    const ColoredProjectTitle = ({ title }) => {
+        const colorMapping = {
+            "LogiX": (
+                <span>
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8e8e8e] via-[#f0f0f0] to-[#8e8e8e] font-bold tracking-wide">
+                        LogiX
+                    </span>
                 </span>
-            </span>
 
-        ),
-        "Portfolio": (
-            <span>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8e8e8e] via-[#f0f0f0] to-[#8e8e8e] font-bold tracking-wide">
-                    Portfolio
+            ),
+            "Portfolio": (
+                <span>
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8e8e8e] via-[#f0f0f0] to-[#8e8e8e] font-bold tracking-wide">
+                        Portfolio
+                    </span>
                 </span>
-            </span>
 
-        ),
-        "Mogo": (
-            <span>
-                M<span className="text-[rgb(18,88,255)]">og</span>o
-            </span>
-        ),
-        "FoodAR": (
-            <span>
-                <span>Food</span>
-                <span className="text-[#63D471]">AR</span>
-            </span>
-        ),
-        "Kombuczara": (
-            <span className="text-[#E9A85D]">Kombuczara</span>
-        ),
-        "Radio Silesia": (
-            <span>
-                <span className="text-blue-500">Radio</span>
-                {" "}
-                <span className="text-red-500">Silesia</span>
-            </span>
-        )
-    };
-
-    if (title === "Radio Silesia") {
-        return (
-            <span>
+            ),
+            "Mogo": (
+                <span>
+                    M<span className="text-[rgb(18,88,255)]">og</span>o
+                </span>
+            ),
+            "FoodAR": (
+                <span>
+                    <span>Food</span>
+                    <span className="text-[#63D471]">AR</span>
+                </span>
+            ),
+            "Kombuczara": (
+                <span className="text-[#E9A85D]">Kombuczara</span>
+            ),
+            "Radio Silesia": (
                 <span>
                     <span className="text-blue-500">Radio</span>
                     {" "}
                     <span className="text-red-500">Silesia</span>
                 </span>
-            </span>
-        );
-    }
+            )
+        };
 
-    return colorMapping[title] || <span>{title}</span>;
-};
-export default function Projects() {
+        if (title === "Radio Silesia") {
+            return (
+                <span>
+                    <span>
+                        <span className="text-blue-500">Radio</span>
+                        {" "}
+                        <span className="text-red-500">Silesia</span>
+                    </span>
+                </span>
+            );
+        }
+
+        return colorMapping[title] || <span>{title}</span>;
+    };
+
     const containerVariants = {
         hidden: {
             opacity: 0
@@ -145,7 +149,7 @@ export default function Projects() {
                     transition={{ duration: 0.5 }}
                     className="text-4xl md:text-5xl font-bold mb-12 text-center"
                 >
-                    Projects
+                    {t.projects.title}
                 </motion.h2>
 
                 <motion.div
@@ -230,7 +234,7 @@ export default function Projects() {
                                         whileHover={{ x: 5 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        View Project
+                                        {t.projects.viewProject}
                                         <svg
                                             className="ml-2 w-4 h-4"
                                             fill="none"

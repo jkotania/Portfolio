@@ -4,8 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaCode, FaBars, FaTimes } from 'react-icons/fa';
 import ResumePopup from './ResumePopup';
+import { useTranslation } from '@/app/hooks/useTranslations';
 
 export default function Navbar() {
+    const { t } = useTranslation();
     const [isResumePopupOpen, setIsResumePopupOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,10 +31,10 @@ export default function Navbar() {
     };
 
     const navLinks = [
-        { href: "#about", text: "About me" },
-        { href: "#projects", text: "Projects" },
-        { href: "#skills", text: "Skills" },
-        { href: "#contact", text: "Contact" }
+        { href: "#about", text: t.navbar.about },
+        { href: "#projects", text: t.navbar.projects },
+        { href: "#skills", text: t.navbar.skills },
+        { href: "#contact", text: t.navbar.contact }
     ];
 
     return (
@@ -76,7 +78,7 @@ export default function Navbar() {
                                 transition={{ delay: 0.4 }}
                                 className="px-6 py-2 border border-mono-primary text-mono-primary hover:bg-mono-primary hover:text-mono-background rounded-lg transition-colors duration-300"
                             >
-                                Resume
+                                {t.navbar.resume}
                             </motion.button>
                         </div>
 
@@ -120,7 +122,7 @@ export default function Navbar() {
                                 whileTap={{ scale: 0.95 }}
                                 className="w-full mt-4 px-6 py-2 border border-mono-primary text-mono-primary hover:bg-mono-primary hover:text-mono-background rounded-lg transition-all duration-300"
                             >
-                                Resume
+                                {t.navbar.resume}
                             </motion.button>
                         </div>
                     </motion.div>

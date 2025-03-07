@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { translations } from "@/app/i18n/translations";
+import { headers } from 'next/headers';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,64 +15,56 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Portfolio - Jan Kotania | Fullstack Developer",
-  description:
-    "Portfolio showcasing experience and programming skills in JavaScript and beyond. Jan Kotania is a passionate developer of new technologies and an experienced Developer specializing in React, Next.js and modern web solutions. He creates fast, responsive and intuitive web applications, taking care of code quality, performance optimization and UX/UI best practices.",
+async function getLanguage() {
+  const headersList = await headers();
+  const acceptLanguage = headersList.get('accept-language') || '';
+  return acceptLanguage.includes('pl') ? 'pl' : 'en';
+}
 
-  keywords: [
-    "Jan Kotania",
-    "jkotania",
-    "frontend developer",
-    "fullstack developer",
-    "react developer",
-    "next.js developer",
-    "programista webowy",
-    "tworzenie stron internetowych",
-    "AI developer",
-    "Flutter",
-    "aplikacje webowe",
-    "JavaScript",
-    "TypeScript",
-    "UI/UX design",
-  ],
+export async function generateMetadata() {
+  const lang = await getLanguage();
+  const t = translations[lang];
 
-  author: "Jan Kotania",
-
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png" }],
-  },
-
-  openGraph: {
-    title: "Portfolio - Jan Kotania | Fullstack Developer",
-    description:
-      "Portfolio of experienced FullStack Developer Jan Kotania, specializing in React, Next.js and modern web technologies",
-    url: "https://jkotania.tech",
-    siteName: "Portfolio - Jan Kotania | Fullstack Developer",
-    locale: "en_EN",
-    type: "website",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    keywords: t.meta.keywords,
+    author: "Jan Kotania",
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png" }],
+    },
+    openGraph: {
+      title: t.meta.title,
+      description: t.meta.description,
+      url: "https://jkotania.tech",
+      siteName: t.meta.title,
+      locale: lang === 'pl' ? 'pl_PL' : 'en_US',
+      type: "website",
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const lang = await getLanguage();
+  
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link
