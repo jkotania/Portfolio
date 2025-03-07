@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/app/hooks/useTranslations';
 
 const TypewriterWord = ({ word, startDelay = 0, charDelay = 0.03 }) => {
     return (
@@ -48,6 +49,7 @@ const TypewriterText = ({ text, startDelay = 0, charDelay = 0.03 }) => {
 };
 
 const TextWithGradients = () => {
+    const {t} = useTranslation();
     // Polish text
     const firstPart = t.description.firstPart;
     const and = t.description.and;
