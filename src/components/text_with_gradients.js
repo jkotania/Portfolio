@@ -49,9 +49,9 @@ const TypewriterText = ({ text, startDelay = 0, charDelay = 0.03 }) => {
 
 const TextWithGradients = () => {
     // Polish text
-    const firstPart = "Tworzę nowoczesne aplikacje używając";
-    const and = "oraz";
-    const lastPart = ", wzbogacone o możliwości sztucznej inteligencji. Specjalizuję się w tworzeniu wydajnych rozwiązań cross-platformowych.";
+    const firstPart = t.description.firstPart;
+    const and = t.description.and;
+    const lastPart = t.description.lastPart;
     
     // Use a shorter character delay for smoother animation
     const charDelay = 0.025;
