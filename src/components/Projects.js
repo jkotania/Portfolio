@@ -159,7 +159,7 @@ export default function Projects() {
                         <motion.div
                             key={project.title}
                             variants={projectVariants}
-                            className="group relative bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all flex flex-col h-full"
+                            className="group relative bg-white/5 backdrop-blur-lg rounded-xl overflow-hidden border border-white/10 hover:border-white/20 flex flex-col h-full"
                         >
                             <motion.div
                                 className="relative h-36 sm:h-40 overflow-hidden"

@@ -44,33 +44,11 @@ export default function Contact() {
       y: 0,
       transition: {
         duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1], // Płynniejsza krzywa przejścia
+        ease: [0.25, 0.1, 0.25, 1],
       },
     },
   };
 
-  // Nowy wariant dla przycisków social media
-  const socialButtonVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.95,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-    hover: {
-      scale: 1.05,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-      },
-    },
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -212,26 +190,26 @@ export default function Contact() {
             </motion.div>
 
             <motion.div
-              variants={socialButtonVariants}
+              variants={itemVariants}
               className="flex space-x-4 pt-6"
             >
               <motion.a
-                variants={socialButtonVariants}
+                variants={itemVariants}
                 href="https://github.com/jkotania"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20 transition-all"
+                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20"
               >
                 <FaGithub className="text-xl" />
               </motion.a>
               <motion.a
-                variants={socialButtonVariants}
+                variants={itemVariants}
                 href="https://www.linkedin.com/in/jan-kotania/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20 transition-all"
+                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20"
               >
                 <FaLinkedin className="text-xl" />
               </motion.a>
@@ -278,11 +256,11 @@ export default function Contact() {
               />
             </motion.div>
             <motion.button
-              variants={socialButtonVariants}
+              variants={itemVariants}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               disabled={status.loading}
-              className={`w-full py-3 px-6 bg-white/5 border border-white/10 text-mono-primary hover:text-blue-400 hover:border-blue-400 rounded-xl transition-all duration-300 ${
+              className={`w-full py-3 px-6 bg-white/5 border border-white/10 text-mono-primary hover:text-blue-400 hover:border-blue-400 rounded-xl ${
                 status.loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
             >
