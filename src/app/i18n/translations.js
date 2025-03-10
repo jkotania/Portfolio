@@ -143,11 +143,6 @@ export const translations = {
       projects: {
         title: "Projects",
         viewProject: "View Project",
-        types: {
-          website: "Website",
-          mobileApp: "Mobile App with AI",
-          design: "Design"
-        },
         items: {
           mogo: {
             description: "Website for a fictional furniture company with authentication system.",
