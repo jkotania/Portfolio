@@ -1,9 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Sitemap: https://jkotania.tech/sitemap.xml
 
 # Host
 Host: https://jkotania.tech
-
-# Sitemaps
-Sitemap: https://jkotania.tech/sitemap.xml

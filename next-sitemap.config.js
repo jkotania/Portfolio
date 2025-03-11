@@ -2,6 +2,8 @@
 module.exports = {
   siteUrl: "https://jkotania.tech",
   generateRobotsTxt: true,
+  generateIndexSitemap: false, // Wyłącz generowanie indeksu
+  sitemapSize: 5000, // Ustaw limit na 5000 URLi, aby uniknąć podziału na wiele plików
   alternateRefs: [
     {
       href: 'https://jkotania.tech',
@@ -27,15 +29,17 @@ module.exports = {
   changefreq: 'monthly',
   priority: 1.0,
   transform: async (config, path) => {
-    // Upewnij się, że ścieżka zaczyna się od https://
-    const fullPath = path.startsWith('http') ? path : `${config.siteUrl}${path}`;
-    
+    const fullPath = `${config.siteUrl}${path}`;
     return {
       loc: fullPath,
       changefreq: config.changefreq,
       priority: config.priority,
       lastmod: new Date().toISOString(),
-      alternateRefs: config.alternateRefs ?? [],
+      alternateRefs: config.alternateRefs,
     }
+  },
+  // Filtr, który zachowuje tylko główną stronę
+  filter: (path) => {
+    return path === '/';
   },
 };
