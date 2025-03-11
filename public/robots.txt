@@ -1,3 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://jkotania.tech
+
+# Sitemaps
 Sitemap: https://jkotania.tech/sitemap.xml
