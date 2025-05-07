@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import { FaFileDownload } from "react-icons/fa";
 import { useAnalytics } from "@/app/hooks/useAnalytics";
-import { useTranslation } from '@/app/hooks/useTranslations';
+import { useTranslation } from "@/app/hooks/useTranslations";
 
 export default function ResumePopup({ isOpen, onClose }) {
   const { t } = useTranslation();
@@ -14,23 +14,19 @@ export default function ResumePopup({ isOpen, onClose }) {
     const fileName = url.split("/").pop();
 
     try {
-      trackEvent("cv_download", "start", `${fileName}_${language}`);
+      trackEvent("download_cv", "resume", `${fileName}_${language}`);
 
-      const response = await fetch(url);
-      if (response.ok) {
-        trackEvent("cv_download", "success", `${fileName}_${language}`);
-      } else {
-        trackEvent(
-          "cv_download",
-          "error",
-          `file_not_found_${fileName}_${language}`
-        );
-      }
+      setTimeout(() => {
+        window.open(url, "_blank");
+
+        trackEvent("download_cv_success", "resume", `${fileName}_${language}`);
+      }, 100);
     } catch (error) {
+      console.error("Błąd podczas pobierania CV:", error);
       trackEvent(
-        "cv_download",
-        "error",
-        `${error.message}_${fileName}_${language}`
+        "download_cv_error",
+        "resume",
+        `${error.message || "unknown_error"}`
       );
     }
   };
@@ -87,7 +83,7 @@ export default function ResumePopup({ isOpen, onClose }) {
         <motion.div
           variants={modalVariants}
           onClick={(e) => e.stopPropagation()}
-          className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6 w-full max-w-md relative"
+          className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 w-full max-w-xl relative "
         >
           <button
             onClick={onClose}
@@ -96,7 +92,7 @@ export default function ResumePopup({ isOpen, onClose }) {
             <IoClose size={24} />
           </button>
 
-          <h2 className="text-2xl font-bold text-mono-primary mb-4 text-center">
+          <h2 className="text-2xl font-bold text-mono-primary mb-8 text-center">
             {t.resumePopup.title}
           </h2>
 
