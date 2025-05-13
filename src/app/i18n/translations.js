@@ -1,7 +1,7 @@
 export const translations = {
   pl: {
     meta: {
-      title: "Portfolio - Jan Kotania | Web Developer",
+      title: "Jan Kotania | Web Developer & AI Engineer",
       description:
         "Portfolio prezentujące doświadczenie i umiejętności programistyczne w JavaScript i innych technologiach. Jan Kotania to pasjonat nowych technologii i doświadczony Developer specjalizujący się w React, Next.js i nowoczesnych rozwiązaniach webowych.",
       keywords: [
@@ -62,8 +62,8 @@ export const translations = {
         },
         portfolio: {
           description:
-            "Jest to dokładnie ta strona, na której jesteś teraz, gdzie możesz się dowiedzieć więcej o mnie i o moim doświadczeniu.",
-          type: "Strona internetowa",
+            "Portfolio składające się ze stworzonych przeze mnie designów UI/UX, zrobionych w programie Figma. Dzięki temu możesz zobaczyć moje umiejętności projektowe.",
+          type: "Figma Design",
         },
         radioSilesia: {
           description:
@@ -111,7 +111,7 @@ export const translations = {
   },
   en: {
     meta: {
-      title: "Portfolio - Jan Kotania | Web Developer",
+      title: "Jan Kotania | Web Developer & AI Engineer",
       description:
         "Portfolio showcasing experience and programming skills in JavaScript and beyond. Jan Kotania is a passionate developer of new technologies and an experienced Developer specializing in React, Next.js and modern web solutions. He creates fast, responsive and intuitive web applications, taking care of code quality, performance optimization and UX/UI best practices.",
       keywords: [
@@ -172,8 +172,8 @@ export const translations = {
         },
         portfolio: {
           description:
-            "This is exactly the site you're on right now, where you can learn more about me and my experience.",
-          type: "Website",
+        "Portfolio consisting of UI/UX designs created by me in Figma. This allows you to see my design skills.",
+      type: "Figma Design",
         },
         radioSilesia: {
           description:

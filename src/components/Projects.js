@@ -8,6 +8,14 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "Portfolio",
+      description: t.projects.items.portfolio.description,
+      tech: ["Figma"],
+      type: t.projects.items.portfolio.type,
+      link: "https://www.figma.com/design/7wtDekjzJ61ef6IIGeMvw3/Portfolio?node-id=93-1886&t=Frx0UelJzym9MJdK-1",
+      image: "/portfolio-preview.png",
+    },
+    {
       title: "FoodAR",
       description: t.projects.items.foodar.description,
       tech: ["Flutter", "Firebase", "YOLO AI", "TensorFlow Lite", "Figma"],
@@ -30,7 +38,6 @@ export default function Projects() {
       link: "https://kombuczara.com/",
       image: "/kombuczara-preview.png",
     },
-
     {
       title: "LogiX",
       description: t.projects.items.logix.description,
@@ -39,13 +46,7 @@ export default function Projects() {
       link: "https://logix-gilt.vercel.app/",
       image: "/logix-preview.png",
     },
-    {
-      title: "Portfolio",
-      description: t.projects.items.portfolio.description,
-      tech: ["Next.js", "Tailwind CSS"],
-      type: t.projects.items.portfolio.type,
-      image: "/portfolio-preview.png",
-    },
+    
     {
       title: "Radio Silesia",
       description: t.projects.items.radioSilesia.description,
