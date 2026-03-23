@@ -45,7 +45,7 @@ export default function Hero() {
   return (
     <section
       id="about"
-      className="relative min-h-[100dvh] flex items-center justify-center"
+      className="relative min-h-[90dvh] md:min-h-[100dvh] flex items-center justify-center py-14 md:py-16"
     >
       <div className="relative container mx-auto px-6 text-center">
         <motion.div
@@ -61,7 +61,7 @@ export default function Hero() {
             ref={headingRef}
           >
             <h1
-              className={`text-6xl lg:text-7xl font-bold relative pb-4 lg:pb-12 cursor-default ${
+              className={`text-5xl sm:text-6xl lg:text-7xl font-bold relative pb-4 md:pb-8 lg:pb-10 cursor-default ${
                 isMobile ? "text-white" : "text-transparent"
               }`}
               style={
@@ -85,7 +85,7 @@ export default function Hero() {
             </h1>
           </div>
 
-          <p className="text-xl text-mono-secondary mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-mono-secondary mb-6 md:mb-8 max-w-2xl mx-auto">
             {t.hero.description}
           </p>
 

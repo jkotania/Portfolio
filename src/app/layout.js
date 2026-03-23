@@ -35,7 +35,7 @@ export async function generateMetadata() {
   const t = translations[lang];
 
   return {
-    metadataBase: new URL('https://jkotania.pl'),
+    metadataBase: new URL("https://jkotania.pl"),
     title: t.meta.title,
     description: t.meta.description,
     keywords: t.meta.keywords,
@@ -73,6 +73,7 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   const lang = await getLanguage();
 
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
@@ -97,23 +98,21 @@ export default async function RootLayout({ children }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="x-default" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://jkotania.pl"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="pl" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="pl"
+          href="https://jkotania.pl"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="en" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://jkotania.pl"
         />
-        <link rel="alternate" hrefLang="pl" href="https://jkotania.tech" />
-        <link rel="alternate" hrefLang="en" href="https://jkotania.tech" />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </head>
       <body

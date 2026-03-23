@@ -77,26 +77,26 @@ export default function ResumePopup({ isOpen, onClose }) {
         animate="visible"
         exit="hidden"
         variants={backdropVariants}
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-3"
         onClick={onClose}
       >
         <motion.div
           variants={modalVariants}
           onClick={(e) => e.stopPropagation()}
-          className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 w-full max-w-xl relative "
+          className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6 w-full max-w-xl relative"
         >
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 text-gray-400 hover:text-white transition-colors"
+            className="absolute right-3 top-3 text-gray-400 hover:text-white transition-colors"
           >
             <IoClose size={24} />
           </button>
 
-          <h2 className="text-2xl font-bold text-mono-primary mb-8 text-center">
+          <h2 className="text-xl sm:text-2xl font-bold text-mono-primary mb-6 text-center">
             {t.resumePopup.title}
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             <motion.a
               href="CV/2yrsDev_JKotania_Resume.pdf"
               target="_blank"
@@ -107,7 +107,7 @@ export default function ResumePopup({ isOpen, onClose }) {
               onClick={() =>
                 handleDownload("EN", "CV/2yrsDev_JKotania_Resume.pdf")
               }
-              className="flex items-center justify-between w-full p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
+              className="flex items-center justify-between w-full p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
             >
               <span className="flex items-center gap-3">
                 <FaFileDownload />
@@ -126,7 +126,7 @@ export default function ResumePopup({ isOpen, onClose }) {
               onClick={() =>
                 handleDownload("PL", "CV/2lataDev_JKotania_Resume.pdf")
               }
-              className="flex items-center justify-between w-full p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
+              className="flex items-center justify-between w-full p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
             >
               <span className="flex items-center gap-3">
                 <FaFileDownload />
