@@ -73,7 +73,7 @@ export default function Contact() {
       const remainingTime = Math.ceil(
         (parseInt(lastSubmissionTime) + COOLDOWN_PERIOD - currentTime) /
           1000 /
-          60
+          60,
       );
       setStatus({
         loading: false,
@@ -120,19 +120,22 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-[100dvh] flex flex-col justify-center snap-start py-16 px-6"
+      className="min-h-[85dvh] md:min-h-[90dvh] flex flex-col justify-center snap-start py-14 md:py-16 px-6"
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.2 }}
-        className="container mx-auto max-w-6xl bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-8"
+        className="container mx-auto max-w-6xl bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 p-6 sm:p-8"
       >
-        <motion.div variants={itemVariants} className="text-center mb-12">
+        <motion.div
+          variants={itemVariants}
+          className="text-center mb-10 md:mb-12"
+        >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           >
             {t.contact.title}
           </motion.h2>
@@ -146,7 +149,7 @@ export default function Contact() {
 
         <motion.div
           variants={itemVariants}
-          className="grid md:grid-cols-2 gap-12"
+          className="grid md:grid-cols-2 gap-8 lg:gap-10"
         >
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-6">

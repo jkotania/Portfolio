@@ -46,7 +46,7 @@ export default function Projects() {
       link: "https://logix-gilt.vercel.app/",
       image: "/logix-preview.png",
     },
-    
+
     {
       title: "Radio Silesia",
       description: t.projects.items.radioSilesia.description,
@@ -138,14 +138,14 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 snap-start snap-always flex items-center justify-center px-6"
+      className="py-14 md:py-16 snap-start snap-always flex items-center justify-center px-6"
     >
       <div className="container mx-auto max-w-6xl">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold mb-12 text-center"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-12 text-center"
         >
           {t.projects.title}
         </motion.h2>
