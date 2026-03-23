@@ -26,7 +26,7 @@ export async function generateMetadata() {
   const t = translations[lang];
 
   return {
-    metadataBase: new URL('https://jkotania.tech'),
+    metadataBase: new URL('https://jkotania.pl'),
     title: t.meta.title,
     description: t.meta.description,
     keywords: t.meta.keywords,
@@ -42,7 +42,7 @@ export async function generateMetadata() {
     openGraph: {
       title: t.meta.title,
       description: t.meta.description,
-      url: "https://jkotania.tech",
+      url: "https://jkotania.pl",
       siteName: t.meta.title,
       locale: lang === 'pl' ? 'pl_PL' : 'en_US',
       type: "website",
@@ -69,7 +69,7 @@ export default async function RootLayout({ children }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://jkotania.tech" />
+        <link rel="canonical" href="https://jkotania.pl" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link
           rel="icon"
@@ -91,17 +91,17 @@ export default async function RootLayout({ children }) {
         <link 
           rel="alternate" 
           hrefLang="x-default" 
-          href="https://jkotania.tech" 
+          href="https://jkotania.pl" 
         />
         <link 
           rel="alternate" 
           hrefLang="pl" 
-          href="https://jkotania.tech" 
+          href="https://jkotania.pl" 
         />
         <link 
           rel="alternate" 
           hrefLang="en" 
-          href="https://jkotania.tech" 
+          href="https://jkotania.pl" 
         />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </head>
