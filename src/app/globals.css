@@ -23,7 +23,7 @@ body {
   overflow-x: hidden;
 }
 section {
-  scroll-margin-top: 32px; /* wysokość navbara */
+  scroll-margin-top: 32px;
 }
 
 ::-webkit-scrollbar {
