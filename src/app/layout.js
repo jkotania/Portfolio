@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { translations } from "@/app/i18n/translations";
 import { headers } from "next/headers";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +18,17 @@ const geistMono = Geist_Mono({
 
 async function getLanguage() {
   const headersList = await headers();
+  const acceptLanguage = headersList.get("accept-language") || "";
+  const userAgent = headersList.get("user-agent") || "";
+
+  const isGoogleBot = userAgent.toLowerCase().includes("googlebot");
+  const isPolishRequest = acceptLanguage.includes("pl");
+
+  if (isGoogleBot) {
+    return isPolishRequest ? "pl" : "en";
+  }
+
+  return acceptLanguage.includes("pl") ? "pl" : "en";
   const acceptLanguage = headersList.get("accept-language") || "";
   const userAgent = headersList.get("user-agent") || "";
 
@@ -54,6 +66,7 @@ export async function generateMetadata() {
       url: "https://jkotania.pl",
       siteName: t.meta.title,
       locale: lang === "pl" ? "pl_PL" : "en_US",
+      locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
     },
     robots: {
@@ -72,6 +85,7 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
   const lang = await getLanguage();
+
 
   return (
     <html lang={lang} suppressHydrationWarning>
