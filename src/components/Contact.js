@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from '@/app/hooks/useTranslations';
+import { useTranslation } from "@/app/hooks/useTranslations";
 import {
   FaGithub,
   FaLinkedin,
@@ -31,7 +31,7 @@ export default function Contact() {
       transition: {
         duration: 0.5,
         ease: "easeOut",
-        staggerChildren: 0.1, // Zmniejszono opóźnienie między elementami
+        staggerChildren: 0.1,
       },
     },
   };
@@ -50,7 +50,6 @@ export default function Contact() {
       },
     },
   };
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -162,7 +161,9 @@ export default function Contact() {
                 <FaEnvelope className="text-mono-primary text-xl" />
               </motion.div>
               <motion.div variants={itemVariants}>
-                <h3 className="text-mono-primary font-medium">{t.contact.email.label}</h3>
+                <h3 className="text-mono-primary font-medium">
+                  {t.contact.email.label}
+                </h3>
                 <a
                   href="mailto:jkotania14@gmail.com"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
@@ -183,22 +184,21 @@ export default function Contact() {
                 <FaMapMarkerAlt className="text-mono-primary text-xl" />
               </motion.div>
               <motion.div variants={itemVariants}>
-                <h3 className="text-mono-primary font-medium">{t.contact.location.label}</h3>
+                <h3 className="text-mono-primary font-medium">
+                  {t.contact.location.label}
+                </h3>
                 <p className="text-gray-400">{t.contact.location.value}</p>
               </motion.div>
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex space-x-4 pt-6"
-            >
+            <motion.div variants={itemVariants} className="flex space-x-4 pt-6">
               <motion.a
                 variants={itemVariants}
                 href="https://github.com/jkotania"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-blue-400 hover:border-white/20"
+                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-slate-100 hover:border-white/20"
               >
                 <FaGithub className="text-xl" />
               </motion.a>

@@ -6,7 +6,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Schemat 1: Minimalistyczny monochromatyczny
         mono: {
           primary: '#E2E2E2',
           secondary: '#CCCCCC',

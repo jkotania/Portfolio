@@ -3,7 +3,7 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { translations } from "@/app/i18n/translations";
-import { headers } from 'next/headers';
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,8 +17,17 @@ const geistMono = Geist_Mono({
 
 async function getLanguage() {
   const headersList = await headers();
-  const acceptLanguage = headersList.get('accept-language') || '';
-  return acceptLanguage.includes('pl') ? 'pl' : 'en';
+  const acceptLanguage = headersList.get("accept-language") || "";
+  const userAgent = headersList.get("user-agent") || "";
+
+  const isGoogleBot = userAgent.toLowerCase().includes("googlebot");
+  const isPolishRequest = acceptLanguage.includes("pl");
+
+  if (isGoogleBot) {
+    return isPolishRequest ? "pl" : "en";
+  }
+
+  return acceptLanguage.includes("pl") ? "pl" : "en";
 }
 
 export async function generateMetadata() {
@@ -26,7 +35,7 @@ export async function generateMetadata() {
   const t = translations[lang];
 
   return {
-    metadataBase: new URL('https://jkotania.pl'),
+    metadataBase: new URL("https://jkotania.pl"),
     title: t.meta.title,
     description: t.meta.description,
     keywords: t.meta.keywords,
@@ -44,7 +53,7 @@ export async function generateMetadata() {
       description: t.meta.description,
       url: "https://jkotania.pl",
       siteName: t.meta.title,
-      locale: lang === 'pl' ? 'pl_PL' : 'en_US',
+      locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
     },
     robots: {
@@ -63,7 +72,7 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
   const lang = await getLanguage();
-  
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
@@ -88,20 +97,20 @@ export default async function RootLayout({ children }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="x-default" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://jkotania.pl"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="pl" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="pl"
+          href="https://jkotania.pl"
         />
-        <link 
-          rel="alternate" 
-          hrefLang="en" 
-          href="https://jkotania.pl" 
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href="https://jkotania.pl"
         />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </head>
