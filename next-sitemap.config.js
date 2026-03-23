@@ -1,20 +1,20 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://jkotania.tech",
+  siteUrl: "https://jkotania.pl",
   generateRobotsTxt: true,
   generateIndexSitemap: false, // Wyłącz generowanie indeksu
   sitemapSize: 5000, // Ustaw limit na 5000 URLi, aby uniknąć podziału na wiele plików
   alternateRefs: [
     {
-      href: 'https://jkotania.tech',
+      href: 'https://jkotania.pl',
       hreflang: 'x-default',
     },
     {
-      href: 'https://jkotania.tech',
+      href: 'https://jkotania.pl',
       hreflang: 'pl',
     },
     {
-      href: 'https://jkotania.tech',
+      href: 'https://jkotania.pl',
       hreflang: 'en',
     },
   ],
