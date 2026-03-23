@@ -26,7 +26,7 @@ export default function ResumePopup({ isOpen, onClose }) {
       trackEvent(
         "download_cv_error",
         "resume",
-        `${error.message || "unknown_error"}`
+        `${error.message || "unknown_error"}`,
       );
     }
   };
@@ -98,15 +98,13 @@ export default function ResumePopup({ isOpen, onClose }) {
 
           <div className="space-y-3">
             <motion.a
-              href="CV/2yrsDev_JKotania_Resume.pdf"
+              href="CV/CV_Jan_Kotania_ENG.pdf"
               target="_blank"
               rel="noopener noreferrer"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              onClick={() =>
-                handleDownload("EN", "CV/2yrsDev_JKotania_Resume.pdf")
-              }
+              onClick={() => handleDownload("EN", "CV/CV_Jan_Kotania_ENG.pdf")}
               className="flex items-center justify-between w-full p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
             >
               <span className="flex items-center gap-3">
@@ -117,14 +115,14 @@ export default function ResumePopup({ isOpen, onClose }) {
             </motion.a>
 
             <motion.a
-              href="CV/2lataDev_JKotania_Resume.pdf"
+              href="CV/CV_Jan_Kotania_ATS_PL.pdf"
               target="_blank"
               rel="noopener noreferrer"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
               onClick={() =>
-                handleDownload("PL", "CV/2lataDev_JKotania_Resume.pdf")
+                handleDownload("PL", "CV/CV_Jan_Kotania_ATS_PL.pdf")
               }
               className="flex items-center justify-between w-full p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-mono-primary transition-colors"
             >
