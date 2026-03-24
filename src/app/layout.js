@@ -46,7 +46,10 @@ export async function generateMetadata() {
         { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
         { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       ],
-      apple: [{ url: "/apple-touch-icon.png" }],
+      shortcut: "/favicon.ico",
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
     },
     openGraph: {
       title: t.meta.title,
@@ -55,6 +58,28 @@ export async function generateMetadata() {
       siteName: t.meta.title,
       locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
+      images: [
+        {
+          url: "/portfolio-preview.png",
+          width: 1200,
+          height: 630,
+          alt: t.meta.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t.meta.title,
+      description: t.meta.description,
+      images: ["/portfolio-preview.png"],
+    },
+    alternates: {
+      canonical: "https://jkotania.pl",
+      languages: {
+        "x-default": "https://jkotania.pl",
+        pl: "https://jkotania.pl",
+        en: "https://jkotania.pl",
+      },
     },
     robots: {
       index: true,
@@ -67,57 +92,21 @@ export async function generateMetadata() {
         "max-snippet": -1,
       },
     },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
   };
 }
 
 export default async function RootLayout({ children }) {
   const lang = await getLanguage();
 
-
   return (
     <html lang={lang} suppressHydrationWarning>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://jkotania.pl" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://jkotania.pl"
-        />
-        <link
-          rel="alternate"
-          hrefLang="pl"
-          href="https://jkotania.pl"
-        />
-        <link
-          rel="alternate"
-          hrefLang="en"
-          href="https://jkotania.pl"
-        />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         {children}
         <SpeedInsights />
       </body>

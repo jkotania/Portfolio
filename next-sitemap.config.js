@@ -2,20 +2,20 @@
 module.exports = {
   siteUrl: "https://jkotania.pl",
   generateRobotsTxt: true,
-  generateIndexSitemap: false, // Wyłącz generowanie indeksu
-  sitemapSize: 5000, // Ustaw limit na 5000 URLi, aby uniknąć podziału na wiele plików
+  generateIndexSitemap: false,
+  sitemapSize: 5000,
   alternateRefs: [
     {
-      href: 'https://jkotania.pl',
-      hreflang: 'x-default',
+      href: "https://jkotania.pl",
+      hreflang: "x-default",
     },
     {
-      href: 'https://jkotania.pl',
-      hreflang: 'pl',
+      href: "https://jkotania.pl",
+      hreflang: "pl",
     },
     {
-      href: 'https://jkotania.pl',
-      hreflang: 'en',
+      href: "https://jkotania.pl",
+      hreflang: "en",
     },
   ],
   robotsTxtOptions: {
@@ -26,7 +26,7 @@ module.exports = {
       },
     ],
   },
-  changefreq: 'monthly',
+  changefreq: "monthly",
   priority: 1.0,
   transform: async (config, path) => {
     const fullPath = `${config.siteUrl}${path}`;
@@ -36,10 +36,9 @@ module.exports = {
       priority: config.priority,
       lastmod: new Date().toISOString(),
       alternateRefs: config.alternateRefs,
-    }
+    };
   },
-  // Filtr, który zachowuje tylko główną stronę
   filter: (path) => {
-    return path === '/';
+    return path === "/";
   },
 };
