@@ -3,23 +3,23 @@
 @tailwind utilities;
 .subtle-gradient {
   background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.5) 0%,
-          rgba(0, 0, 0, 0) 100%
+    to bottom,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(0, 0, 0, 0) 100%
   );
 }
 
 .dot-pattern {
   background-image: radial-gradient(
-          rgba(255, 255, 255, 0.32) 1px,
-          transparent 1px
+    rgba(255, 255, 255, 0.32) 1px,
+    transparent 1px
   );
   background-size: 50px 50px;
 }
 
 body {
-  background-color: theme('colors.mono.background');
-  color: theme('colors.mono.primary');
+  background-color: theme("colors.mono.background");
+  color: theme("colors.mono.primary");
   overflow-x: hidden;
 }
 section {
@@ -31,19 +31,19 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-  background: theme('colors.mono.background');
+  background: theme("colors.mono.background");
 }
 
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.mono.accent');
+  background: theme("colors.mono.accent");
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.mono.secondary');
+  background: theme("colors.mono.secondary");
 }
 
 ::selection {
-  background: theme('colors.mono.accent');
-  color: theme('colors.mono.primary');
+  background: theme("colors.mono.accent");
+  color: theme("colors.mono.primary");
 }

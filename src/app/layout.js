@@ -17,17 +17,16 @@ const geistMono = Geist_Mono({
 
 async function getLanguage() {
   const headersList = await headers();
-  const acceptLanguage = headersList.get("accept-language") || "";
-  const userAgent = headersList.get("user-agent") || "";
+  const acceptLanguage = (
+    headersList.get("accept-language") || ""
+  ).toLowerCase();
 
-  const isGoogleBot = userAgent.toLowerCase().includes("googlebot");
-  const isPolishRequest = acceptLanguage.includes("pl");
-
-  if (isGoogleBot) {
-    return isPolishRequest ? "pl" : "en";
+  // Na domenie .pl domyślnie serwujemy język polski, chyba że użytkownik wyraźnie preferuje angielski
+  if (acceptLanguage.startsWith("en")) {
+    return "en";
   }
 
-  return acceptLanguage.includes("pl") ? "pl" : "en";
+  return "pl";
 }
 
 export async function generateMetadata() {
@@ -36,10 +35,21 @@ export async function generateMetadata() {
 
   return {
     metadataBase: new URL("https://jkotania.pl"),
-    title: t.meta.title,
+    title: {
+      default: t.meta.title,
+      template: "%s | Jan Kotania",
+    },
     description: t.meta.description,
     keywords: t.meta.keywords,
-    author: "Jan Kotania",
+    applicationName: "Jan Kotania Portfolio",
+    authors: [{ name: "Jan Kotania", url: "https://jkotania.pl" }],
+    creator: "Jan Kotania",
+    publisher: "Jan Kotania",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
     icons: {
       icon: [
         { url: "/favicon.ico" },
@@ -55,7 +65,7 @@ export async function generateMetadata() {
       title: t.meta.title,
       description: t.meta.description,
       url: "https://jkotania.pl",
-      siteName: t.meta.title,
+      siteName: "Jan Kotania",
       locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
       images: [
@@ -101,11 +111,28 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   const lang = await getLanguage();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Jan Kotania",
+    url: "https://jkotania.pl",
+    jobTitle: "Web Developer & AI Engineer",
+    description: translations[lang].meta.description,
+    sameAs: [
+      "https://github.com/jkotania",
+      "https://linkedin.com/in/jan-kotania",
+    ],
+  };
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         {children}
         <SpeedInsights />
