@@ -15,4 +15,4 @@ My portfolio website built with [Next.js](https://nextjs.org) and [Tailwind CSS]
 
 - **Framework**: Next.js (App Router)
 - **UI**: React + Tailwind CSS (configured via `tailwind.config.mjs` and `postcss.config.mjs`)
-- **Deployment**: Vercel (recommended) or any Node-compatible host
+- **Deployment**: Vercel
