@@ -3,7 +3,7 @@ export const translations = {
     meta: {
       title: "Jan Kotania | Web Developer & AI Engineer",
       description:
-        "Portfolio Jana Kotani - doświadczonego Web Developera specjalizującego się w React, Next.js i AI. Zobacz moje projekty i umiejętności programistyczne.",
+        "Portfolio prezentujące doświadczenie i umiejętności programistyczne w JavaScript i innych technologiach. Jan Kotania to pasjonat nowych technologii i doświadczony Developer specjalizujący się w React, Next.js i nowoczesnych rozwiązaniach webowych.",
       keywords: [
         "Jan Kotania",
         "jkotania",
@@ -113,7 +113,7 @@ export const translations = {
     meta: {
       title: "Jan Kotania | Web Developer & AI Engineer",
       description:
-        "Jan Kotania's portfolio - experienced Web Developer specializing in React, Next.js and AI. Check out my projects and programming skills.",
+        "Portfolio showcasing experience and programming skills in JavaScript and beyond. Jan Kotania is a passionate developer of new technologies and an experienced Developer specializing in React, Next.js and modern web solutions. He creates fast, responsive and intuitive web applications, taking care of code quality, performance optimization and UX/UI best practices.",
       keywords: [
         "Jan Kotania",
         "jkotania",

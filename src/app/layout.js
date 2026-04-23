@@ -17,16 +17,17 @@ const geistMono = Geist_Mono({
 
 async function getLanguage() {
   const headersList = await headers();
-  const acceptLanguage = (
-    headersList.get("accept-language") || ""
-  ).toLowerCase();
+  const acceptLanguage = headersList.get("accept-language") || "";
+  const userAgent = headersList.get("user-agent") || "";
 
-  // Na domenie .pl domyślnie serwujemy język polski, chyba że użytkownik wyraźnie preferuje angielski
-  if (acceptLanguage.startsWith("en")) {
-    return "en";
+  const isGoogleBot = userAgent.toLowerCase().includes("googlebot");
+  const isPolishRequest = acceptLanguage.includes("pl");
+
+  if (isGoogleBot) {
+    return isPolishRequest ? "pl" : "en";
   }
 
-  return "pl";
+  return acceptLanguage.includes("pl") ? "pl" : "en";
 }
 
 export async function generateMetadata() {
@@ -35,61 +36,25 @@ export async function generateMetadata() {
 
   return {
     metadataBase: new URL("https://jkotania.pl"),
-    title: {
-      default: t.meta.title,
-      template: "%s | Jan Kotania",
-    },
+    title: t.meta.title,
     description: t.meta.description,
     keywords: t.meta.keywords,
-    applicationName: "Jan Kotania Portfolio",
-    authors: [{ name: "Jan Kotania", url: "https://jkotania.pl" }],
-    creator: "Jan Kotania",
-    publisher: "Jan Kotania",
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
+    author: "Jan Kotania",
     icons: {
       icon: [
         { url: "/favicon.ico" },
         { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
         { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       ],
-      shortcut: "/favicon.ico",
-      apple: [
-        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-      ],
+      apple: [{ url: "/apple-touch-icon.png" }],
     },
     openGraph: {
       title: t.meta.title,
       description: t.meta.description,
       url: "https://jkotania.pl",
-      siteName: "Jan Kotania",
+      siteName: t.meta.title,
       locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
-      images: [
-        {
-          url: "/portfolio-preview.png",
-          width: 1200,
-          height: 630,
-          alt: t.meta.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t.meta.title,
-      description: t.meta.description,
-      images: ["/portfolio-preview.png"],
-    },
-    alternates: {
-      canonical: "https://jkotania.pl",
-      languages: {
-        "x-default": "https://jkotania.pl",
-        pl: "https://jkotania.pl",
-        en: "https://jkotania.pl",
-      },
     },
     robots: {
       index: true,
@@ -101,9 +66,6 @@ export async function generateMetadata() {
         "max-image-preview": "large",
         "max-snippet": -1,
       },
-    },
-    verification: {
-      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
     },
   };
 }
@@ -126,6 +88,33 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang={lang} suppressHydrationWarning>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://jkotania.pl" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link rel="alternate" hrefLang="x-default" href="https://jkotania.pl" />
+        <link rel="alternate" hrefLang="pl" href="https://jkotania.pl" />
+        <link rel="alternate" hrefLang="en" href="https://jkotania.pl" />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -133,7 +122,6 @@ export default async function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         {children}
         <SpeedInsights />
       </body>
