@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const requestLog = new Map();
 const COOLDOWN_PERIOD = 5 * 60 * 1000;
 
@@ -27,6 +25,8 @@ export async function POST(req) {
 
     const { name, email, message } = await req.json();
 
+    // Created per request so `next build` doesn't need RESEND_API_KEY.
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const data = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: ["portfoliojankotania@gmail.com"],

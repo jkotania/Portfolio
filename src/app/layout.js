@@ -3,32 +3,18 @@ import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { translations } from "@/app/i18n/translations";
-import { headers } from "next/headers";
+import { alternatesFor, getLanguage } from "@/app/i18n/getLanguage";
+import Providers from "@/components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
-
-async function getLanguage() {
-  const headersList = await headers();
-  const acceptLanguage = headersList.get("accept-language") || "";
-  const userAgent = headersList.get("user-agent") || "";
-
-  const isGoogleBot = userAgent.toLowerCase().includes("googlebot");
-  const isPolishRequest = acceptLanguage.includes("pl");
-
-  if (isGoogleBot) {
-    return isPolishRequest ? "pl" : "en";
-  }
-
-  return acceptLanguage.includes("pl") ? "pl" : "en";
-}
 
 export async function generateMetadata() {
   const lang = await getLanguage();
@@ -39,7 +25,8 @@ export async function generateMetadata() {
     title: t.meta.title,
     description: t.meta.description,
     keywords: t.meta.keywords,
-    author: "Jan Kotania",
+    authors: [{ name: "Jan Kotania", url: "https://jkotania.pl" }],
+    alternates: alternatesFor("/"),
     icons: {
       icon: [
         { url: "/favicon.ico" },
@@ -52,7 +39,8 @@ export async function generateMetadata() {
       title: t.meta.title,
       description: t.meta.description,
       url: "https://jkotania.pl",
-      siteName: t.meta.title,
+      siteName: "Jan Kotania",
+      images: [{ url: "/portfolio-preview.png", width: 1440, height: 1024 }],
       locale: lang === "pl" ? "pl_PL" : "en_US",
       type: "website",
     },
@@ -78,7 +66,7 @@ export default async function RootLayout({ children }) {
     "@type": "Person",
     name: "Jan Kotania",
     url: "https://jkotania.pl",
-    jobTitle: "Web Developer & AI Engineer",
+    jobTitle: "Fullstack Developer & AI Engineer",
     description: translations[lang].meta.description,
     sameAs: [
       "https://github.com/jkotania",
@@ -91,7 +79,6 @@ export default async function RootLayout({ children }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://jkotania.pl" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link
           rel="icon"
@@ -110,19 +97,16 @@ export default async function RootLayout({ children }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
-        <link rel="alternate" hrefLang="x-default" href="https://jkotania.pl" />
-        <link rel="alternate" hrefLang="pl" href="https://jkotania.pl" />
-        <link rel="alternate" hrefLang="en" href="https://jkotania.pl" />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <Providers lang={lang}>{children}</Providers>
         <SpeedInsights />
       </body>
     </html>

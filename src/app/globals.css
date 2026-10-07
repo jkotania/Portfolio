@@ -1,13 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.subtle-gradient {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
 
 .dot-pattern {
   background-image: radial-gradient(
@@ -15,6 +8,13 @@
     transparent 1px
   );
   background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 75%);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -22,8 +22,14 @@ body {
   color: theme("colors.mono.primary");
   overflow-x: hidden;
 }
+
 section {
   scroll-margin-top: 32px;
+}
+
+:focus-visible {
+  outline: 2px solid theme("colors.mono.primary");
+  outline-offset: 3px;
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +50,55 @@ section {
 }
 
 ::selection {
-  background: theme("colors.mono.accent");
-  color: theme("colors.mono.primary");
+  background: theme("colors.mono.primary");
+  color: theme("colors.mono.background");
+}
+
+/* Hero heading: outlined on desktop, filled on touch-sized screens. */
+@media (min-width: 768px) {
+  /* Geist is a variable font whose glyphs have overlapping contours; a plain stroke would draw
+     those inner lines (visible in the "F"). Painting the background-coloured fill over a 2px
+     stroke hides them and leaves a clean 1px outline. */
+  .hero-outline {
+    color: theme("colors.mono.background");
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+    paint-order: stroke fill;
+  }
+}
+
+.hero-spotlight {
+  color: white;
+  opacity: var(--spot-opacity, 0);
+  transition: opacity var(--spot-duration, 1.2s) ease-out;
+  -webkit-mask-image: radial-gradient(
+    circle 140px at var(--x, -999px) var(--y, -999px),
+    #000 0%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    circle 140px at var(--x, -999px) var(--y, -999px),
+    #000 0%,
+    transparent 100%
+  );
+}
+
+/* Fades the edges of the tech marquee. */
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
 }

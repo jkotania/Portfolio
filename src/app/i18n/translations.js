@@ -1,14 +1,16 @@
 export const translations = {
   pl: {
     meta: {
-      title: "Jan Kotania | Web Developer & AI Engineer",
+      title: "Jan Kotania | Fullstack Developer & AI Engineer",
       description:
-        "Portfolio prezentujące doświadczenie i umiejętności programistyczne w JavaScript i innych technologiach. Jan Kotania to pasjonat nowych technologii i doświadczony Developer specjalizujący się w React, Next.js i nowoczesnych rozwiązaniach webowych.",
+        "Jestem Jan Kotania, fullstack developer i AI engineer ze Śląska. Tworzę szybkie strony internetowe, aplikacje webowe i mobilne w React, Next.js i Flutterze oraz wdrażam rozwiązania AI, takie jak rozpoznawanie obrazu.",
       keywords: [
         "Jan Kotania",
         "jkotania",
         "programista frontend",
         "programista fullstack",
+        "fullstack developer",
+        "AI engineer",
         "programista react",
         "programista next.js",
         "programista webowy",
@@ -27,53 +29,53 @@ export const translations = {
       skills: "Umiejętności",
       contact: "Kontakt",
       resume: "CV",
+      openMenu: "Otwórz menu",
+      closeMenu: "Zamknij menu",
     },
     resumePopup: {
       title: "Wybierz wersję CV",
       englishVersion: "English Version",
       polishVersion: "Polska Wersja",
+      close: "Zamknij",
     },
     skills: {
       name: "Umiejętności",
+      subtitle: "Technologie, z którymi pracuję na co dzień.",
+      groups: {
+        frontend: "Frontend",
+        mobile: "Mobile i AI",
+        backend: "Backend i wdrożenia",
+        design: "Design",
+      },
     },
     projects: {
       title: "Projekty",
       viewProject: "Zobacz Projekt",
-      items: {
-        mogo: {
-          description:
-            "Strona projektowa dla fikcyjnej firmy meblarskiej. Przygotowana jako projekt na studia i rozbudowana do perfekcji, przy pomocy React.",
-          type: "Strona internetowa",
-        },
-        kombuczara: {
-          description:
-            "Strona stworzona w celu promocji herbaty fermentowanej w Polsce przez influencerkę znaną jako 'Kombuczara'.",
-          type: "Strona internetowa",
-        },
-        foodar: {
-          description:
-            "Aplikacja mobilna z funkcją wykrywania obiektów. Wykorzystuje model AI YOLO do rozpoznawania obiektów i Firebase do przechowywania danych.",
-          type: "Aplikacja mobilna z AI",
-        },
-        logix: {
-          description:
-            "Platforma dla software house'ów. Frontend zbudowany przy użyciu Next.js z Tailwind CSS.",
-          type: "Strona internetowa",
-        },
-        portfolio: {
-          description:
-            "Portfolio składające się ze stworzonych przeze mnie designów UI/UX, zrobionych w programie Figma. Dzięki temu możesz zobaczyć moje umiejętności projektowe.",
-          type: "Figma Design",
-        },
-        radioSilesia: {
-          description:
-            "W pełni funkcjonalny prototyp stworzony specjalnie do współpracy z Radio Silesia. Osiągnął najwyższe oceny w konkursie.",
-          type: "Design",
-        },
-      },
+      subtitle: "Wybrane realizacje: od stron dla klientów po aplikacje z AI.",
+      cursor: "Zobacz",
+      caseStudy: "Zobacz case study",
+      visit: "Odwiedź stronę",
+    },
+    caseStudy: {
+      back: "Wszystkie projekty",
+      role: "Rola",
+      year: "Rok",
+      stack: "Technologie",
+      link: "Odwiedź stronę",
+      problem: "Zadanie",
+      approach: "Co zrobiłem",
+      features: "Najważniejsze elementy",
+      result: "Efekt",
+      next: "Następny projekt",
+      cta: "Masz podobny projekt?",
+      ctaLink: "Napisz do mnie",
     },
     hero: {
-      title: "Web Developer & AI Engineer",
+      title: "Fullstack Developer & AI Engineer",
+      availability: "Dostępny do współpracy",
+      ctaProjects: "Zobacz projekty",
+      ctaContact: "Napisz do mnie",
+      scroll: "Przewiń",
       description:
         "Tworzę nowoczesne strony internetowe i aplikacje mobilne z uwzględnieniem jakości kodowania, optymalizacji wydajności i najlepszych praktyk UX/UI. Dodatkowo, interesuje się również rozwojem sztucznej inteligencji i uczenia maszynowego.",
       links: {
@@ -84,6 +86,9 @@ export const translations = {
     },
     contact: {
       title: "Kontakt",
+      headline: "Masz pomysł? Porozmawiajmy.",
+      copyEmail: "Kopiuj adres email",
+      copied: "Skopiowano!",
       subtitle:
         "Napisz do mnie, jeśli szukasz programisty, masz pytanie lub po prostu chcesz nawiązać kontakt.",
       email: {
@@ -108,17 +113,22 @@ export const translations = {
       },
       responseTime: "Czas odpowiedzi: zazwyczaj w ciągu 24 godzin",
     },
+    footer: {
+      rights: "Wszelkie prawa zastrzeżone.",
+      backToTop: "Do góry",
+    },
   },
   en: {
     meta: {
-      title: "Jan Kotania | Web Developer & AI Engineer",
+      title: "Jan Kotania | Fullstack Developer & AI Engineer",
       description:
-        "Portfolio showcasing experience and programming skills in JavaScript and beyond. Jan Kotania is a passionate developer of new technologies and an experienced Developer specializing in React, Next.js and modern web solutions. He creates fast, responsive and intuitive web applications, taking care of code quality, performance optimization and UX/UI best practices.",
+        "I'm Jan Kotania, a fullstack developer and AI engineer from Silesia, Poland. I build fast websites, web apps and mobile apps with React, Next.js and Flutter, and ship AI features such as computer vision.",
       keywords: [
         "Jan Kotania",
         "jkotania",
         "frontend developer",
         "fullstack developer",
+        "AI engineer",
         "react developer",
         "next.js developer",
         "web developer",
@@ -137,53 +147,53 @@ export const translations = {
       skills: "Skills",
       contact: "Contact",
       resume: "Resume",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
     },
     resumePopup: {
       title: "Select Resume Version",
       englishVersion: "English Version",
       polishVersion: "Polska Wersja",
+      close: "Close",
     },
     skills: {
       name: "Skills",
+      subtitle: "The tools I work with every day.",
+      groups: {
+        frontend: "Frontend",
+        mobile: "Mobile & AI",
+        backend: "Backend & deployment",
+        design: "Design",
+      },
     },
     projects: {
       title: "Projects",
       viewProject: "View Project",
-      items: {
-        mogo: {
-          description:
-            "Website for a fictional furniture company. Prepared as a university project and expanded to perfection using React.",
-          type: "Website",
-        },
-        kombuczara: {
-          description:
-            "Website created to promote fermented tea in Poland by an influencer known as 'Kombuczara'.",
-          type: "Website",
-        },
-        foodar: {
-          description:
-            "Mobile application with object detection functionality. Uses YOLO AI model for object recognition and Firebase for data storage.",
-          type: "Mobile App with AI",
-        },
-        logix: {
-          description:
-            "Platform for software houses. Frontend built with Next.js using Tailwind CSS.",
-          type: "Website",
-        },
-        portfolio: {
-          description:
-            "Portfolio consisting of UI/UX designs created by me in Figma. This allows you to see my design skills.",
-          type: "Figma Design",
-        },
-        radioSilesia: {
-          description:
-            "A fully functional prototype created specifically for collaboration with Radio Silesia. Achieved the highest ratings in the competition.",
-          type: "Design",
-        },
-      },
+      subtitle: "Selected work, from client websites to AI-powered apps.",
+      cursor: "View",
+      caseStudy: "View case study",
+      visit: "Visit site",
+    },
+    caseStudy: {
+      back: "All projects",
+      role: "Role",
+      year: "Year",
+      stack: "Built with",
+      link: "Visit site",
+      problem: "The brief",
+      approach: "What I did",
+      features: "Key features",
+      result: "Result",
+      next: "Next project",
+      cta: "Have a similar project in mind?",
+      ctaLink: "Get in touch",
     },
     hero: {
-      title: "Web Developer & AI Engineer",
+      title: "Fullstack Developer & AI Engineer",
+      availability: "Available for new projects",
+      ctaProjects: "View projects",
+      ctaContact: "Get in touch",
+      scroll: "Scroll",
       description:
         "I create modern websites and mobile apps with a focus on code quality, performance optimization and UX/UI best practices. Additionally, I'm interested in artificial intelligence and machine learning development.",
       links: {
@@ -194,6 +204,9 @@ export const translations = {
     },
     contact: {
       title: "Contact",
+      headline: "Have an idea? Let's talk.",
+      copyEmail: "Copy email address",
+      copied: "Copied!",
       subtitle:
         "Feel free to reach out if you're looking for a developer, have a question, or just want to connect.",
       email: {
@@ -217,6 +230,10 @@ export const translations = {
           } before sending another message.`,
       },
       responseTime: "Response time: Usually within 24 hours",
+    },
+    footer: {
+      rights: "All rights reserved.",
+      backToTop: "Back to top",
     },
   },
 };

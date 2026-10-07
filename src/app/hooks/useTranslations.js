@@ -1,21 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import { translations } from "../i18n/translations";
 
-export function useTranslation() {
-  const [lang, setLang] = useState("en");
+// The language comes from the browser's Accept-Language header, read on the server in
+// layout.js, so the page renders in the right language from the first paint.
+const LanguageContext = createContext("en");
 
-  useEffect(() => {
-    const userLang = navigator.language || navigator.userLanguage;
-    const detectedLang = userLang.startsWith("pl") ? "pl" : "en";
-    setLang(detectedLang);
-  }, []);
+export function LanguageProvider({ lang, children }) {
+  return (
+    <LanguageContext.Provider value={lang}>{children}</LanguageContext.Provider>
+  );
+}
+
+export function useTranslation() {
+  const lang = useContext(LanguageContext);
 
   return {
     t: translations[lang],
     lang,
-    setLang: (newLang) => {
-      setLang(newLang);
-    },
   };
 }

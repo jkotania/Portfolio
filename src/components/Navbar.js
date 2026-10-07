@@ -1,28 +1,50 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { FaCode, FaBars, FaTimes } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+} from "framer-motion";
+import Link from "next/link";
+import { FaCode } from "react-icons/fa";
 import ResumePopup from "./ResumePopup";
+import { EASE } from "./motion/primitives";
 import { useTranslation } from "@/app/hooks/useTranslations";
 
 export default function Navbar() {
-  const { t, lang } = useTranslation();
+  const { t } = useTranslation();
   const [isResumePopupOpen, setIsResumePopupOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [hovered, setHovered] = useState(null);
+
+  const { scrollY, scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Hide while scrolling down, show again as soon as the user scrolls up.
+  useMotionValueEvent(scrollY, "change", (current) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    setIsHidden(current > previous && current > 160);
+  });
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+    if (!isMobileMenuOpen) return;
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMobileMenuOpen]);
 
   const handleResumeClick = () => {
     setIsMobileMenuOpen(false);
@@ -30,105 +52,152 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "#about", text: t.navbar.about },
-    { href: "#projects", text: t.navbar.projects },
-    { href: "#skills", text: t.navbar.skills },
-    { href: "#contact", text: t.navbar.contact },
+    { href: "/#about", text: t.navbar.about },
+    { href: "/#projects", text: t.navbar.projects },
+    { href: "/#skills", text: t.navbar.skills },
+    { href: "/#contact", text: t.navbar.contact },
   ];
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a] backdrop-blur-sm border-b border-white/5">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-2"
+      <motion.div
+        style={{ scaleX: progress }}
+        className="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left bg-mono-primary"
+      />
+
+      <motion.header
+        initial={{ y: -40, opacity: 0 }}
+        animate={{ y: isHidden && !isMobileMenuOpen ? -120 : 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: EASE }}
+        className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
+      >
+        <nav className="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/10 bg-[#0a0a0a]/70 py-2 pl-5 pr-2 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-mono-primary"
+            translate="no"
+          >
+            <FaCode className="text-lg" aria-hidden="true" />
+            <span className="font-semibold tracking-tight">Jan Kotania</span>
+          </Link>
+
+          <div className="hidden items-center gap-1 md:flex">
+            <ul
+              className="flex items-center"
+              onMouseLeave={() => setHovered(null)}
             >
-              <FaCode className="text-xl text-mono-primary" />
-              <span className="text-lg font-bold text-mono-primary">
-                Jan Kotania
-              </span>
-            </motion.div>
-
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative px-3 py-1.5 text-mono-secondary hover:text-mono-primary transition-colors group"
-                >
-                  {link.text}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-mono-primary transform scale-x-0 transition-transform group-hover:scale-x-100" />
-                </motion.a>
+              {navLinks.map((link) => (
+                <li key={link.href} className="relative">
+                  <a
+                    href={link.href}
+                    onMouseEnter={() => setHovered(link.href)}
+                    className="relative z-10 block px-4 py-2 text-sm text-mono-secondary transition-colors hover:text-mono-primary"
+                  >
+                    {link.text}
+                  </a>
+                  {hovered === link.href && (
+                    <motion.span
+                      layoutId="nav-hover"
+                      className="absolute inset-0 rounded-full bg-white/[0.08]"
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </li>
               ))}
+            </ul>
 
-              <motion.button
-                onClick={handleResumeClick}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="px-5 py-1.5 border border-mono-primary text-mono-primary hover:bg-mono-primary hover:text-mono-background rounded-lg transition-colors duration-300"
-              >
-                {t.navbar.resume}
-              </motion.button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-mono-secondary hover:text-mono-primary transition-colors"
-              >
-                {isMobileMenuOpen ? (
-                  <FaTimes className="text-2xl" />
-                ) : (
-                  <FaBars className="text-2xl" />
-                )}
-              </button>
-            </div>
+            <motion.button
+              type="button"
+              onClick={handleResumeClick}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="ml-2 rounded-full bg-mono-primary px-5 py-2 text-sm font-medium text-mono-background transition-colors hover:bg-white"
+            >
+              {t.navbar.resume}
+            </motion.button>
           </div>
 
-          {/* Mobile Menu */}
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{
-              opacity: isMobileMenuOpen ? 1 : 0,
-              height: isMobileMenuOpen ? "auto" : 0,
-            }}
-            className="md:hidden overflow-hidden"
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label={
+              isMobileMenuOpen ? t.navbar.closeMenu : t.navbar.openMenu
+            }
+            className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08] md:hidden"
           >
-            <div className="py-3 space-y-1.5">
-              {navLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-3 py-1.5 text-mono-secondary hover:text-mono-primary hover:bg-mono-accent/10 rounded-lg transition-colors"
-                >
-                  {link.text}
-                </a>
-              ))}
+            <motion.span
+              animate={
+                isMobileMenuOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }
+              }
+              className="absolute h-[1.5px] w-4 bg-mono-primary"
+            />
+            <motion.span
+              animate={
+                isMobileMenuOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }
+              }
+              className="absolute h-[1.5px] w-4 bg-mono-primary"
+            />
+          </button>
+        </nav>
+      </motion.header>
 
-              <motion.button
-                onClick={handleResumeClick}
-                whileTap={{ scale: 0.95 }}
-                className="w-full mt-3 px-5 py-1.5 border border-mono-primary text-mono-primary hover:bg-mono-primary hover:text-mono-background rounded-lg transition-all duration-300"
-              >
-                {t.navbar.resume}
-              </motion.button>
-            </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 flex flex-col justify-center bg-[#0a0a0a]/95 px-8 backdrop-blur-xl md:hidden"
+          >
+            <motion.ul
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                visible: {
+                  transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+                },
+                hidden: {},
+              }}
+              className="space-y-2"
+            >
+              {navLinks.map((link) => (
+                <li key={link.href} className="overflow-hidden">
+                  <motion.a
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    variants={{
+                      hidden: { y: "100%" },
+                      visible: {
+                        y: 0,
+                        transition: { duration: 0.6, ease: EASE },
+                      },
+                    }}
+                    className="block py-1 text-5xl font-semibold tracking-tight text-mono-primary"
+                  >
+                    {link.text}
+                  </motion.a>
+                </li>
+              ))}
+            </motion.ul>
+            <motion.button
+              type="button"
+              onClick={handleResumeClick}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.4 } }}
+              exit={{ opacity: 0 }}
+              className="mt-10 w-full rounded-full bg-mono-primary py-4 text-lg font-medium text-mono-background"
+            >
+              {t.navbar.resume}
+            </motion.button>
           </motion.div>
-        </div>
-      </nav>
+        )}
+      </AnimatePresence>
+
       <ResumePopup
         isOpen={isResumePopupOpen}
         onClose={() => setIsResumePopupOpen(false)}
