@@ -10,7 +10,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaGithub, FaTrophy } from "react-icons/fa";
 import { EASE, SectionHeading } from "./motion/primitives";
 import ProjectTitle from "./ProjectTitle";
 import { projects } from "@/data/projects";
@@ -124,6 +124,12 @@ function ProjectCard({ project, index, total, progress, isDesktop, t, lang }) {
               <span className="inline-block rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-sm text-mono-secondary">
                 {content.type}
               </span>
+              {content.award && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-sm font-medium text-amber-200">
+                  <FaTrophy className="h-3 w-3" aria-hidden="true" />
+                  {content.award}
+                </span>
+              )}
               <span className="text-sm text-mono-secondary">{content.role}</span>
             </div>
             <h3
@@ -190,6 +196,17 @@ function ProjectCard({ project, index, total, progress, isDesktop, t, lang }) {
                     className="h-3 w-3 -rotate-45 transition-transform duration-300 group-hover/ext:rotate-0"
                     aria-hidden="true"
                   />
+                </a>
+              )}
+              {project.repo && (
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2.5 text-sm text-mono-primary transition-colors hover:border-white/40"
+                >
+                  <FaGithub className="h-3.5 w-3.5" aria-hidden="true" />
+                  {t.projects.code}
                 </a>
               )}
             </div>

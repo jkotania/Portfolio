@@ -3,6 +3,7 @@
 // `description`, `role` and the first three `features` appear on the homepage card; the rest feeds the project page.
 // Everything here comes from the original project descriptions and what the screenshots show.
 // Fields set to null are hidden.
+// `repo` links to public code on GitHub.
 // TODO(user): add `year` and fill `result` with real outcomes (numbers, competition name, client feedback).
 
 export const projects = [
@@ -10,16 +11,18 @@ export const projects = [
     slug: "radio-silesia",
     title: "Radio Silesia",
     link: null,
+    repo: null,
     image: { src: "/radio-preview.png", width: 1920, height: 911 },
     tech: ["Figma", "UX/UI", "Mobile"],
     color: "#EF4444",
     year: null,
     pl: {
       type: "Design",
+      award: "1. miejsce w konkursie",
       description:
-        "W pełni funkcjonalny prototyp aplikacji dla Radia Silesia, który otrzymał najwyższe oceny w konkursie. Radio na żywo, audycje, podcasty i Szlaglista w jednym miejscu.",
+        "W pełni funkcjonalny prototyp aplikacji dla Radia Silesia, który zajął pierwsze miejsce w konkursie. Radio na żywo, audycje, podcasty i Szlaglista w jednym miejscu.",
       summary:
-        "W pełni funkcjonalny prototyp aplikacji mobilnej dla Radia Silesia, który otrzymał najwyższe oceny w konkursie.",
+        "W pełni funkcjonalny prototyp aplikacji mobilnej dla Radia Silesia, który zajął pierwsze miejsce w konkursie.",
       role: "Projekt UX/UI",
       problem:
         "Radio Silesia to nie tylko program na żywo. Są też audycje, podcasty, wydarzenia, Koncert życzeń i Szlaglista. Zadanie polegało na zaprojektowaniu aplikacji, w której słuchacz znajdzie to wszystko w jednym miejscu i włączy radio jednym dotknięciem.",
@@ -33,14 +36,16 @@ export const projects = [
         "Karuzele audycji, podcastów i wydarzeń",
         "Dolna nawigacja z Koncertem życzeń i Szlaglistą",
       ],
-      result: "Prototyp otrzymał najwyższe oceny w konkursie.",
+      result:
+        "Prototyp zajął pierwsze miejsce w konkursie na projekt aplikacji mobilnej dla Radia Silesia.",
     },
     en: {
       type: "Design",
+      award: "1st place in the competition",
       description:
-        "A fully functional app prototype for Radio Silesia that received the highest marks in the competition. Live radio, shows, podcasts and the Szlaglista chart in one place.",
+        "A fully functional app prototype for Radio Silesia that won first place in the competition. Live radio, shows, podcasts and the Szlaglista chart in one place.",
       summary:
-        "A fully functional mobile app prototype for Radio Silesia that received the highest marks in the competition.",
+        "A fully functional mobile app prototype for Radio Silesia that won first place in the competition.",
       role: "UX/UI design",
       problem:
         "Radio Silesia is more than its live programme. There are shows, podcasts, events, a request show (Koncert życzeń) and the Szlaglista chart. The task was to design an app where listeners find all of it in one place and start the radio with a single tap.",
@@ -54,64 +59,69 @@ export const projects = [
         "Carousels of shows, podcasts and events",
         "Bottom navigation with the request show and Szlaglista",
       ],
-      result: "The prototype received the highest marks in the competition.",
+      result:
+        "The prototype won first place in the Radio Silesia mobile app design competition.",
     },
   },
   {
     slug: "foodar",
     title: "FoodAR",
     link: null,
+    repo: null,
     image: { src: "/mobile-preview.png", width: 1920, height: 900 },
-    tech: ["Flutter", "Firebase", "YOLO AI", "TensorFlow Lite", "Figma"],
+    tech: ["Flutter", "Python", "YOLO AI", "TensorFlow Lite", "Roboflow", "Firebase", "Figma"],
     color: "#63D471",
     year: null,
     pl: {
       type: "Aplikacja mobilna z AI",
       description:
-        "Aplikacja we Flutterze, która rozpoznaje jedzenie na zdjęciach. Model AI YOLO działa w aplikacji dzięki TensorFlow Lite, a ekran wprowadzający uczy, jak zrobić zdjęcie, które model odczyta.",
+        "Aplikacja we Flutterze, która rozpoznaje pleśń na jedzeniu. Własny model YOLO odróżnia nieszkodliwe przebarwienia od toksycznej pleśni ze skutecznością 91% i ostrzega przed zagrożeniami dla zdrowia.",
       summary:
-        "Aplikacja mobilna, która rozpoznaje jedzenie na zdjęciach dzięki modelowi AI YOLO działającemu bezpośrednio w aplikacji.",
-      role: "Projekt i programowanie",
+        "Aplikacja mobilna, która w czasie rzeczywistym wykrywa pleśń na jedzeniu dzięki własnemu modelowi AI YOLO, ze skutecznością 91%.",
+      role: "Projekt, trenowanie modelu AI i programowanie",
       problem:
-        "Rozpoznawanie jedzenia na zdjęciu brzmi prosto, dopóki nie spojrzy się na zdjęcia robione w prawdziwym życiu: bałagan na talerzu, telefon trzymany za blisko, jedzenie w szklanym pojemniku. Aplikacja musiała działać w takich warunkach i jasno pokazywać użytkownikowi, jakiego zdjęcia potrzebuje.",
+        "Na pierwszy rzut oka trudno odróżnić nieszkodliwe przebarwienie od toksycznej pleśni, a pomyłka może oznaczać reakcję alergiczną albo kontakt z groźnymi zarodnikami. Aplikacja miała rozpoznawać pleśń na obrazie z kamery i jasno ostrzegać użytkownika.",
       approach: [
-        "Aplikację zbudowałem we Flutterze. Do rozpoznawania obiektów użyłem modelu YOLO uruchamianego przez TensorFlow Lite, czyli w wersji przystosowanej do pracy na telefonie. Dane aplikacji przechowuje Firebase.",
-        "Zanim napisałem kod, zaprojektowałem ekrany w Figmie. Ważną częścią projektu jest ekran wprowadzający „How To?”. Na przykładach pokazuje dobre zdjęcie oraz trzy typowe błędy: bałagan, zdjęcie zrobione za blisko i jedzenie sfotografowane przez szkło. Dzięki temu model dostaje zdjęcia, które potrafi odczytać.",
+        "Wytrenowałem własny model YOLO do wykrywania pleśni na jedzeniu, korzystając z Roboflow i Pythona. Model działa w aplikacji dzięki TensorFlow Lite, więc obraz z kamery jest analizowany na bieżąco. Dane aplikacji przechowuje Firebase.",
+        "Interfejs zaprojektowałem w Figmie i zbudowałem we Flutterze. Aplikacja pokazuje wynik na podglądzie z kamery i ostrzega przed możliwymi zagrożeniami, takimi jak alergie czy toksyczne zarodniki. Ekran wprowadzający „How To?” uczy, jak zrobić zdjęcie, które model odczyta: bez bałaganu, nie za blisko i nie przez szkło.",
       ],
       features: [
-        "Rozpoznawanie obiektów modelem YOLO",
-        "Model AI działający w aplikacji dzięki TensorFlow Lite",
+        "Wykrywanie pleśni w czasie rzeczywistym modelem YOLO",
+        "91% skuteczności w odróżnianiu pleśni od przebarwień",
+        "Ostrzeżenia o zagrożeniach dla zdrowia",
         "Ekran wprowadzający, który uczy robić czytelne zdjęcia",
-        "Przechowywanie danych w Firebase",
       ],
-      result: null,
+      result:
+        "Model odróżnia nieszkodliwe przebarwienia od toksycznej pleśni ze skutecznością 91%.",
     },
     en: {
       type: "Mobile App with AI",
       description:
-        "A Flutter app that recognises food in photos. A YOLO AI model runs inside the app with TensorFlow Lite, and the onboarding teaches people how to take a photo the model can read.",
+        "A Flutter app that detects mold on food. A custom YOLO model tells harmless discoloration apart from toxic mold with 91% accuracy and warns about health risks.",
       summary:
-        "A mobile app that recognises food in photos using a YOLO AI model that runs inside the app.",
-      role: "Design and development",
+        "A mobile app that detects mold on food in real time with a custom YOLO AI model, at 91% accuracy.",
+      role: "Design, AI model training and development",
       problem:
-        "Recognising food in a photo sounds simple until you look at photos people actually take: a messy plate, a phone held too close, food in a glass container. The app had to cope with that and show people clearly what kind of photo it needs.",
+        "At first glance it's hard to tell harmless discoloration from toxic mold, and getting it wrong can mean an allergic reaction or contact with harmful spores. The app had to recognise mold in the camera image and warn the user clearly.",
       approach: [
-        "I built the app in Flutter. Object detection uses a YOLO model running through TensorFlow Lite, the version made to run on a phone. Firebase stores the app's data.",
-        "Before writing code I designed the screens in Figma. A key part of the project is the “How To?” onboarding screen. It shows a good photo next to three common mistakes: a messy plate, a photo taken too close and food shot through glass. That way the model gets photos it can actually read.",
+        "I trained a custom YOLO model to detect mold on food, using Roboflow and Python. The model runs inside the app with TensorFlow Lite, so the camera image is analysed live. Firebase stores the app's data.",
+        "I designed the interface in Figma and built it in Flutter. The app shows the result on the camera preview and warns about possible risks such as allergies or toxic spores. The “How To?” onboarding screen teaches people to take a photo the model can read: not messy, not too close and not through glass.",
       ],
       features: [
-        "Object detection with a YOLO model",
-        "AI model running in the app with TensorFlow Lite",
+        "Real time mold detection with a YOLO model",
+        "91% accuracy telling mold apart from discoloration",
+        "Warnings about health risks",
         "Onboarding that teaches people to take readable photos",
-        "Data stored in Firebase",
       ],
-      result: null,
+      result:
+        "The model tells harmless discoloration apart from toxic mold with 91% accuracy.",
     },
   },
   {
     slug: "kombuczara",
     title: "Kombuczara",
     link: "https://kombuczara.com/",
+    repo: null,
     image: { src: "/kombuczara-preview.png", width: 1836, height: 834 },
     tech: ["Zyro", "JavaScript", "API", "UX/UI", "Figma"],
     color: "#E9A85D",
@@ -163,6 +173,7 @@ export const projects = [
     slug: "mogo",
     title: "Mogo",
     link: "https://mogo-ruby.vercel.app/",
+    repo: "https://github.com/jkotania/mogo",
     image: { src: "/mogo-preview.png", width: 1920, height: 833 },
     tech: ["Next.js", "Tailwind CSS", "Supabase", "Auth"],
     color: "#1258FF",
@@ -214,6 +225,7 @@ export const projects = [
     slug: "logix",
     title: "LogiX",
     link: "https://logix-gilt.vercel.app/",
+    repo: "https://github.com/jkotania/logix",
     image: { src: "/logix-preview.png", width: 1920, height: 912 },
     tech: ["Next.js", "Tailwind CSS"],
     color: "#a3a3a3",
@@ -265,6 +277,7 @@ export const projects = [
     slug: "portfolio",
     title: "Portfolio",
     link: "https://www.figma.com/design/7wtDekjzJ61ef6IIGeMvw3/Portfolio?node-id=93-1886&t=Frx0UelJzym9MJdK-1",
+    repo: null,
     image: { src: "/portfolio-preview.png", width: 1440, height: 1024 },
     tech: ["Figma"],
     color: "#d4d4d4",

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaGithub, FaTrophy } from "react-icons/fa";
 import { EASE, FadeIn, Magnetic } from "./motion/primitives";
 import ProjectTitle from "./ProjectTitle";
 import { getNextProject, getProject } from "@/data/projects";
@@ -70,12 +70,17 @@ export default function CaseStudy({ slug }) {
           </Link>
         </motion.div>
 
-        <motion.span
-          {...fadeUp(0.1)}
-          className="mt-10 inline-block rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-sm text-mono-secondary"
-        >
-          {content.type}
-        </motion.span>
+        <motion.div {...fadeUp(0.1)} className="mt-10 flex flex-wrap items-center gap-2">
+          <span className="inline-block rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-sm text-mono-secondary">
+            {content.type}
+          </span>
+          {content.award && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/30 bg-amber-300/10 px-3 py-1 text-sm font-medium text-amber-200">
+              <FaTrophy className="h-3 w-3" aria-hidden="true" />
+              {content.award}
+            </span>
+          )}
+        </motion.div>
 
         <h1
           translate="no"
@@ -110,6 +115,18 @@ export default function CaseStudy({ slug }) {
               </div>
             ))}
           </dl>
+          <div className="flex flex-wrap items-center gap-3">
+          {project.repo && (
+            <a
+              href={project.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 font-medium text-mono-primary transition-colors hover:border-white/40"
+            >
+              <FaGithub className="h-4 w-4" aria-hidden="true" />
+              {t.caseStudy.code}
+            </a>
+          )}
           {project.link && (
             <Magnetic>
               <a
@@ -128,6 +145,7 @@ export default function CaseStudy({ slug }) {
               </a>
             </Magnetic>
           )}
+          </div>
         </motion.div>
 
         <motion.div

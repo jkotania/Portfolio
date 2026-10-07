@@ -55,6 +55,7 @@ export const translations = {
       cursor: "Zobacz",
       caseStudy: "Zobacz case study",
       visit: "Odwiedź stronę",
+      code: "Kod na GitHubie",
     },
     caseStudy: {
       back: "Wszystkie projekty",
@@ -62,6 +63,7 @@ export const translations = {
       year: "Rok",
       stack: "Technologie",
       link: "Odwiedź stronę",
+      code: "Kod na GitHubie",
       problem: "Zadanie",
       approach: "Co zrobiłem",
       features: "Najważniejsze elementy",
@@ -175,6 +177,7 @@ export const translations = {
       cursor: "View",
       caseStudy: "View case study",
       visit: "Visit site",
+      code: "Code on GitHub",
     },
     caseStudy: {
       back: "All projects",
@@ -182,6 +185,7 @@ export const translations = {
       year: "Year",
       stack: "Built with",
       link: "Visit site",
+      code: "Code on GitHub",
       problem: "The brief",
       approach: "What I did",
       features: "Key features",
