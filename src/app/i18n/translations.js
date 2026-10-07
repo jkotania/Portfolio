@@ -30,6 +30,7 @@ export const translations = {
       contact: "Kontakt",
       resume: "CV",
       openMenu: "Otwórz menu",
+      skipToContent: "Przejdź do treści",
       closeMenu: "Zamknij menu",
     },
     resumePopup: {
@@ -50,7 +51,6 @@ export const translations = {
     },
     projects: {
       title: "Projekty",
-      viewProject: "Zobacz Projekt",
       subtitle: "Wybrane realizacje: od stron dla klientów po aplikacje z AI.",
       cursor: "Zobacz",
       caseStudy: "Zobacz case study",
@@ -76,6 +76,8 @@ export const translations = {
       ctaProjects: "Zobacz projekty",
       ctaContact: "Napisz do mnie",
       scroll: "Przewiń",
+      pauseMarquee: "Zatrzymaj przewijanie technologii",
+      playMarquee: "Wznów przewijanie technologii",
       description:
         "Tworzę nowoczesne strony internetowe i aplikacje mobilne z uwzględnieniem jakości kodowania, optymalizacji wydajności i najlepszych praktyk UX/UI. Dodatkowo, interesuje się również rozwojem sztucznej inteligencji i uczenia maszynowego.",
       links: {
@@ -103,7 +105,7 @@ export const translations = {
         name: "Imię i nazwisko",
         message: "Twoja wiadomość",
         send: "Wyślij wiadomość",
-        sending: "Wysyłanie...",
+        sending: "Wysyłanie…",
         success: "Wiadomość została wysłana!",
         error: "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
         cooldown: (minutes) =>
@@ -148,6 +150,7 @@ export const translations = {
       contact: "Contact",
       resume: "Resume",
       openMenu: "Open menu",
+      skipToContent: "Skip to content",
       closeMenu: "Close menu",
     },
     resumePopup: {
@@ -168,7 +171,6 @@ export const translations = {
     },
     projects: {
       title: "Projects",
-      viewProject: "View Project",
       subtitle: "Selected work, from client websites to AI-powered apps.",
       cursor: "View",
       caseStudy: "View case study",
@@ -194,6 +196,8 @@ export const translations = {
       ctaProjects: "View projects",
       ctaContact: "Get in touch",
       scroll: "Scroll",
+      pauseMarquee: "Pause the technology ticker",
+      playMarquee: "Play the technology ticker",
       description:
         "I create modern websites and mobile apps with a focus on code quality, performance optimization and UX/UI best practices. Additionally, I'm interested in artificial intelligence and machine learning development.",
       links: {
@@ -221,7 +225,7 @@ export const translations = {
         name: "Full Name",
         message: "Your Message",
         send: "Send Message",
-        sending: "Sending...",
+        sending: "Sending…",
         success: "Message sent successfully!",
         error: "Failed to send message. Please try again.",
         cooldown: (minutes) =>

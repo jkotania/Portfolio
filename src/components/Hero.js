@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from "react-icons/fa";
 import { EASE, Magnetic } from "./motion/primitives";
 import { useTranslation } from "@/app/hooks/useTranslations";
@@ -29,6 +29,7 @@ function TitleLines({ lines }) {
 export default function Hero() {
   const { t } = useTranslation();
   const titleRef = useRef(null);
+  const reduceMotion = useReducedMotion();
 
   const [first, second] = t.hero.title.split(" & ");
   const lines = second ? [first, `& ${second}`] : [t.hero.title];
@@ -171,7 +172,7 @@ export default function Hero() {
       >
         <span className="flex h-9 w-6 justify-center rounded-full border border-white/20 pt-2">
           <motion.span
-            animate={{ y: [0, 10, 0], opacity: [1, 0.2, 1] }}
+            animate={reduceMotion ? undefined : { y: [0, 10, 0], opacity: [1, 0.2, 1] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             className="h-1.5 w-1 rounded-full bg-mono-primary"
           />

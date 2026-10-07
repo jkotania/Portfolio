@@ -16,6 +16,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin", "latin-ext"],
 });
 
+export const viewport = {
+  themeColor: "#0a0a0a",
+};
+
 export async function generateMetadata() {
   const lang = await getLanguage();
   const t = translations[lang];
@@ -106,6 +110,12 @@ export default async function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <a
+          href="#main"
+          className="sr-only rounded-full bg-mono-primary px-5 py-2.5 text-sm font-medium text-mono-background focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80]"
+        >
+          {translations[lang].navbar.skipToContent}
+        </a>
         <Providers lang={lang}>{children}</Providers>
         <SpeedInsights />
       </body>

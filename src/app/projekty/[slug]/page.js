@@ -92,7 +92,7 @@ export default async function ProjectPage({ params }) {
       <div className="dot-pattern pointer-events-none absolute inset-x-0 top-0 h-[100vh] opacity-40" />
       <div className="relative z-10 w-full">
         <Navbar />
-        <main>
+        <main id="main">
           <CaseStudy slug={slug} />
         </main>
         <Footer />

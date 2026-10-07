@@ -69,6 +69,7 @@ export default function Navbar() {
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: isHidden && !isMobileMenuOpen ? -120 : 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: EASE }}
+        onFocusCapture={() => setIsHidden(false)}
         className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
       >
         <nav className="flex w-full max-w-4xl items-center justify-between rounded-full border border-white/10 bg-[#0a0a0a]/70 py-2 pl-5 pr-2 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
@@ -121,7 +122,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setIsMobileMenuOpen((open) => !open)}
             aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
+            aria-controls={isMobileMenuOpen ? "mobile-menu" : undefined}
             aria-label={
               isMobileMenuOpen ? t.navbar.closeMenu : t.navbar.openMenu
             }
@@ -151,7 +152,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col justify-center bg-[#0a0a0a]/95 px-8 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 z-40 flex flex-col justify-center overscroll-contain bg-[#0a0a0a]/95 px-8 backdrop-blur-xl md:hidden"
           >
             <motion.ul
               initial="hidden"

@@ -7,52 +7,54 @@
 
 export const projects = [
   {
-    slug: "portfolio",
-    title: "Portfolio",
-    link: "https://www.figma.com/design/7wtDekjzJ61ef6IIGeMvw3/Portfolio?node-id=93-1886&t=Frx0UelJzym9MJdK-1",
-    image: { src: "/portfolio-preview.png", width: 1440, height: 1024 },
-    tech: ["Figma"],
-    color: "#d4d4d4",
+    slug: "radio-silesia",
+    title: "Radio Silesia",
+    link: null,
+    image: { src: "/radio-preview.png", width: 1920, height: 911 },
+    tech: ["Figma", "UX/UI", "Mobile"],
+    color: "#EF4444",
     year: null,
     pl: {
-      type: "Figma Design",
+      type: "Design",
       description:
-        "Moje projekty UI/UX zebrane w jednym pliku Figmy. Gotowe realizacje i koncepcje aplikacji mobilnych oraz stron, podzielone na dwie sekcje, żeby łatwo było znaleźć to, co Cię interesuje.",
+        "W pełni funkcjonalny prototyp aplikacji dla Radia Silesia, który otrzymał najwyższe oceny w konkursie. Radio na żywo, audycje, podcasty i Szlaglista w jednym miejscu.",
       summary:
-        "Zbiór moich projektów UI/UX przygotowanych w Figmie: gotowe realizacje oraz koncepcje aplikacji mobilnych i stron internetowych.",
+        "W pełni funkcjonalny prototyp aplikacji mobilnej dla Radia Silesia, który otrzymał najwyższe oceny w konkursie.",
       role: "Projekt UX/UI",
       problem:
-        "Kod pokazuje, jak buduję, ale nie zawsze pokazuje, jak myślę o interfejsie. Chciałem mieć jedno miejsce, w którym klient albo rekruter zobaczy sam proces projektowania: układ ekranów, typografię, kolory i to, jak użytkownik przechodzi od jednego kroku do następnego.",
+        "Radio Silesia to nie tylko program na żywo. Są też audycje, podcasty, wydarzenia, Koncert życzeń i Szlaglista. Zadanie polegało na zaprojektowaniu aplikacji, w której słuchacz znajdzie to wszystko w jednym miejscu i włączy radio jednym dotknięciem.",
       approach: [
-        "Zebrałem w jednym pliku Figmy projekty, które powstały w trakcie studiów informatycznych. Część z nich to ukończone realizacje, część to koncepcje i pomysły. Razem pokazują, że o wygodzie użytkownika myślę od pierwszego szkicu, a nie dopiero na końcu.",
-        "Plik ma własną stronę startową w ciemnym stylu i jest podzielony na dwie sekcje: aplikacje mobilne i strony internetowe. Można od razu przejść do kategorii, która interesuje Cię najbardziej. Studia informatyczne pomagają mi przy tym myśleć o tym, jak dany projekt zostanie później zbudowany w kodzie.",
+        "Zaprojektowałem w Figmie klikalny prototyp, który działa jak prawdziwa aplikacja. Na górze ekranu zawsze widać przycisk „Odtwórz radio”, a pod nim wyszukiwarkę i przewijane karuzele z audycjami, podcastami i wydarzeniami.",
+        "Dolny pasek nawigacji prowadzi do najważniejszych miejsc: strony głównej, Koncertu życzeń, Szlaglisty i zakładki z dodatkowymi treściami. Ciemny motyw z czerwonymi akcentami nawiązuje do kolorów stacji.",
       ],
       features: [
-        "Osobne sekcje dla aplikacji mobilnych i stron internetowych",
-        "Gotowe realizacje obok koncepcji i wczesnych pomysłów",
-        "Projekty przygotowane z myślą o późniejszym wdrożeniu w kodzie",
+        "Przycisk „Odtwórz radio” zawsze pod ręką",
+        "Wyszukiwarka wszystkich treści",
+        "Karuzele audycji, podcastów i wydarzeń",
+        "Dolna nawigacja z Koncertem życzeń i Szlaglistą",
       ],
-      result: null,
+      result: "Prototyp otrzymał najwyższe oceny w konkursie.",
     },
     en: {
-      type: "Figma Design",
+      type: "Design",
       description:
-        "My UI/UX work collected in a single Figma file. Finished projects and concepts for mobile apps and websites, split into two sections so you can go straight to what interests you.",
+        "A fully functional app prototype for Radio Silesia that received the highest marks in the competition. Live radio, shows, podcasts and the Szlaglista chart in one place.",
       summary:
-        "A collection of my UI/UX work in Figma: finished projects and concepts for mobile apps and websites.",
+        "A fully functional mobile app prototype for Radio Silesia that received the highest marks in the competition.",
       role: "UX/UI design",
       problem:
-        "Code shows how I build, but it doesn't always show how I think about an interface. I wanted one place where a client or a recruiter can see the design process itself: screen layout, typography, colour and how a user moves from one step to the next.",
+        "Radio Silesia is more than its live programme. There are shows, podcasts, events, a request show (Koncert życzeń) and the Szlaglista chart. The task was to design an app where listeners find all of it in one place and start the radio with a single tap.",
       approach: [
-        "I gathered the designs I made while studying IT into a single Figma file. Some are finished projects, some are concepts and ideas. Together they show that I think about the user from the first sketch, not at the very end.",
-        "The file has its own dark landing page and is split into two sections, mobile apps and websites, so you can jump straight to the category you care about. Studying IT also helps me design with the build in mind, thinking about how each screen will later be put together in code.",
+        "I designed a clickable prototype in Figma that behaves like a real app. A “play radio” button is always visible at the top of the screen, with search and scrolling carousels of shows, podcasts and events below it.",
+        "The bottom navigation bar leads to the key places: home, the request show, the Szlaglista chart and a tab with more content. The dark theme with red accents follows the station's colours.",
       ],
       features: [
-        "Separate sections for mobile apps and websites",
-        "Finished projects shown next to concepts and early ideas",
-        "Designs prepared with the later build in mind",
+        "“Play radio” button always within reach",
+        "Search across all content",
+        "Carousels of shows, podcasts and events",
+        "Bottom navigation with the request show and Szlaglista",
       ],
-      result: null,
+      result: "The prototype received the highest marks in the competition.",
     },
   },
   {
@@ -102,57 +104,6 @@ export const projects = [
         "AI model running in the app with TensorFlow Lite",
         "Onboarding that teaches people to take readable photos",
         "Data stored in Firebase",
-      ],
-      result: null,
-    },
-  },
-  {
-    slug: "mogo",
-    title: "Mogo",
-    link: "https://mogo-ruby.vercel.app/",
-    image: { src: "/mogo-preview.png", width: 1920, height: 833 },
-    tech: ["Next.js", "Tailwind CSS", "Supabase", "Auth"],
-    color: "#1258FF",
-    year: null,
-    pl: {
-      type: "Strona internetowa",
-      description:
-        "Strona fikcyjnej firmy meblarskiej, która zaczęła się jako projekt na studia. Rozwinąłem ją w Next.js i podłączyłem Supabase, więc dziś ma logowanie i konta użytkowników.",
-      summary:
-        "Strona fikcyjnej firmy meblarskiej. Zaczęła się jako projekt na studia, a potem rozbudowałem ją o konta użytkowników i bazę danych.",
-      role: "Projekt i programowanie (fullstack)",
-      problem:
-        "Na studiach dostałem zadanie przygotowania strony dla firmy meblarskiej. Strona miała w prosty sposób przedstawić ofertę i realizacje firmy oraz zachęcić do kontaktu.",
-      approach: [
-        "Po oddaniu projektu nie zostawiłem go w szufladzie. Rozwinąłem stronę w Next.js i Tailwind CSS, a do obsługi danych i logowania podłączyłem Supabase. Z prostej wizytówki zrobiła się aplikacja z kontami użytkowników.",
-        "Wizualnie postawiłem na jasny, spokojny układ z dużymi zdjęciami wnętrz, tak żeby to meble grały główną rolę. Nawigacja prowadzi do projektów, oferty i kontaktu, a ikony konta i ustawień są zawsze pod ręką w prawym górnym rogu.",
-      ],
-      features: [
-        "Logowanie i konta użytkowników w Supabase",
-        "Sekcje projektów, oferty i kontaktu",
-        "Duże zdjęcia wnętrz na pierwszym planie",
-        "Frontend w Next.js i Tailwind CSS",
-      ],
-      result: null,
-    },
-    en: {
-      type: "Website",
-      description:
-        "A website for a fictional furniture company that started as a university project. I developed it further in Next.js and connected Supabase, so it now has sign in and user accounts.",
-      summary:
-        "A website for a fictional furniture company. It started as a university project, and I later extended it with user accounts and a database.",
-      role: "Design and fullstack development",
-      problem:
-        "At university I was asked to build a website for a furniture company. It had to present the company's offer and past projects simply and encourage people to get in touch.",
-      approach: [
-        "After handing it in I kept going. I developed the site further in Next.js and Tailwind CSS and connected Supabase for data and sign in. A simple brochure site turned into an app with user accounts.",
-        "Visually I went for a light, calm layout with large interior photos, so the furniture takes centre stage. The navigation leads to projects, the offer and contact, and the account and settings icons are always in the top right corner.",
-      ],
-      features: [
-        "Sign in and user accounts with Supabase",
-        "Projects, offer and contact sections",
-        "Large interior photos up front",
-        "Frontend in Next.js and Tailwind CSS",
       ],
       result: null,
     },
@@ -209,6 +160,57 @@ export const projects = [
     },
   },
   {
+    slug: "mogo",
+    title: "Mogo",
+    link: "https://mogo-ruby.vercel.app/",
+    image: { src: "/mogo-preview.png", width: 1920, height: 833 },
+    tech: ["Next.js", "Tailwind CSS", "Supabase", "Auth"],
+    color: "#1258FF",
+    year: null,
+    pl: {
+      type: "Strona internetowa",
+      description:
+        "Strona fikcyjnej firmy meblarskiej, która zaczęła się jako projekt na studia. Rozwinąłem ją w Next.js i podłączyłem Supabase, więc dziś ma logowanie i konta użytkowników.",
+      summary:
+        "Strona fikcyjnej firmy meblarskiej. Zaczęła się jako projekt na studia, a potem rozbudowałem ją o konta użytkowników i bazę danych.",
+      role: "Projekt i programowanie (fullstack)",
+      problem:
+        "Na studiach dostałem zadanie przygotowania strony dla firmy meblarskiej. Strona miała w prosty sposób przedstawić ofertę i realizacje firmy oraz zachęcić do kontaktu.",
+      approach: [
+        "Po oddaniu projektu nie zostawiłem go w szufladzie. Rozwinąłem stronę w Next.js i Tailwind CSS, a do obsługi danych i logowania podłączyłem Supabase. Z prostej wizytówki zrobiła się aplikacja z kontami użytkowników.",
+        "Wizualnie postawiłem na jasny, spokojny układ z dużymi zdjęciami wnętrz, tak żeby to meble grały główną rolę. Nawigacja prowadzi do projektów, oferty i kontaktu, a ikony konta i ustawień są zawsze pod ręką w prawym górnym rogu.",
+      ],
+      features: [
+        "Logowanie i konta użytkowników w Supabase",
+        "Sekcje projektów, oferty i kontaktu",
+        "Duże zdjęcia wnętrz na pierwszym planie",
+        "Frontend w Next.js i Tailwind CSS",
+      ],
+      result: null,
+    },
+    en: {
+      type: "Website",
+      description:
+        "A website for a fictional furniture company that started as a university project. I developed it further in Next.js and connected Supabase, so it now has sign in and user accounts.",
+      summary:
+        "A website for a fictional furniture company. It started as a university project, and I later extended it with user accounts and a database.",
+      role: "Design and fullstack development",
+      problem:
+        "At university I was asked to build a website for a furniture company. It had to present the company's offer and past projects simply and encourage people to get in touch.",
+      approach: [
+        "After handing it in I kept going. I developed the site further in Next.js and Tailwind CSS and connected Supabase for data and sign in. A simple brochure site turned into an app with user accounts.",
+        "Visually I went for a light, calm layout with large interior photos, so the furniture takes centre stage. The navigation leads to projects, the offer and contact, and the account and settings icons are always in the top right corner.",
+      ],
+      features: [
+        "Sign in and user accounts with Supabase",
+        "Projects, offer and contact sections",
+        "Large interior photos up front",
+        "Frontend in Next.js and Tailwind CSS",
+      ],
+      result: null,
+    },
+  },
+  {
     slug: "logix",
     title: "LogiX",
     link: "https://logix-gilt.vercel.app/",
@@ -260,54 +262,52 @@ export const projects = [
     },
   },
   {
-    slug: "radio-silesia",
-    title: "Radio Silesia",
-    link: null,
-    image: { src: "/radio-preview.png", width: 1920, height: 911 },
-    tech: ["Figma", "UX/UI", "Mobile"],
-    color: "#EF4444",
+    slug: "portfolio",
+    title: "Portfolio",
+    link: "https://www.figma.com/design/7wtDekjzJ61ef6IIGeMvw3/Portfolio?node-id=93-1886&t=Frx0UelJzym9MJdK-1",
+    image: { src: "/portfolio-preview.png", width: 1440, height: 1024 },
+    tech: ["Figma"],
+    color: "#d4d4d4",
     year: null,
     pl: {
-      type: "Design",
+      type: "Figma Design",
       description:
-        "W pełni funkcjonalny prototyp aplikacji dla Radia Silesia, który otrzymał najwyższe oceny w konkursie. Radio na żywo, audycje, podcasty i Szlaglista w jednym miejscu.",
+        "Moje projekty UI/UX zebrane w jednym pliku Figmy. Gotowe realizacje i koncepcje aplikacji mobilnych oraz stron, podzielone na dwie sekcje, żeby łatwo było znaleźć to, co Cię interesuje.",
       summary:
-        "W pełni funkcjonalny prototyp aplikacji mobilnej dla Radia Silesia, który otrzymał najwyższe oceny w konkursie.",
+        "Zbiór moich projektów UI/UX przygotowanych w Figmie: gotowe realizacje oraz koncepcje aplikacji mobilnych i stron internetowych.",
       role: "Projekt UX/UI",
       problem:
-        "Radio Silesia to nie tylko program na żywo. Są też audycje, podcasty, wydarzenia, Koncert życzeń i Szlaglista. Zadanie polegało na zaprojektowaniu aplikacji, w której słuchacz znajdzie to wszystko w jednym miejscu i włączy radio jednym dotknięciem.",
+        "Kod pokazuje, jak buduję, ale nie zawsze pokazuje, jak myślę o interfejsie. Chciałem mieć jedno miejsce, w którym klient albo rekruter zobaczy sam proces projektowania: układ ekranów, typografię, kolory i to, jak użytkownik przechodzi od jednego kroku do następnego.",
       approach: [
-        "Zaprojektowałem w Figmie klikalny prototyp, który działa jak prawdziwa aplikacja. Na górze ekranu zawsze widać przycisk „Odtwórz radio”, a pod nim wyszukiwarkę i przewijane karuzele z audycjami, podcastami i wydarzeniami.",
-        "Dolny pasek nawigacji prowadzi do najważniejszych miejsc: strony głównej, Koncertu życzeń, Szlaglisty i zakładki z dodatkowymi treściami. Ciemny motyw z czerwonymi akcentami nawiązuje do kolorów stacji.",
+        "Zebrałem w jednym pliku Figmy projekty, które powstały w trakcie studiów informatycznych. Część z nich to ukończone realizacje, część to koncepcje i pomysły. Razem pokazują, że o wygodzie użytkownika myślę od pierwszego szkicu, a nie dopiero na końcu.",
+        "Plik ma własną stronę startową w ciemnym stylu i jest podzielony na dwie sekcje: aplikacje mobilne i strony internetowe. Można od razu przejść do kategorii, która interesuje Cię najbardziej. Studia informatyczne pomagają mi przy tym myśleć o tym, jak dany projekt zostanie później zbudowany w kodzie.",
       ],
       features: [
-        "Przycisk „Odtwórz radio” zawsze pod ręką",
-        "Wyszukiwarka wszystkich treści",
-        "Karuzele audycji, podcastów i wydarzeń",
-        "Dolna nawigacja z Koncertem życzeń i Szlaglistą",
+        "Osobne sekcje dla aplikacji mobilnych i stron internetowych",
+        "Gotowe realizacje obok koncepcji i wczesnych pomysłów",
+        "Projekty przygotowane z myślą o późniejszym wdrożeniu w kodzie",
       ],
-      result: "Prototyp otrzymał najwyższe oceny w konkursie.",
+      result: null,
     },
     en: {
-      type: "Design",
+      type: "Figma Design",
       description:
-        "A fully functional app prototype for Radio Silesia that received the highest marks in the competition. Live radio, shows, podcasts and the Szlaglista chart in one place.",
+        "My UI/UX work collected in a single Figma file. Finished projects and concepts for mobile apps and websites, split into two sections so you can go straight to what interests you.",
       summary:
-        "A fully functional mobile app prototype for Radio Silesia that received the highest marks in the competition.",
+        "A collection of my UI/UX work in Figma: finished projects and concepts for mobile apps and websites.",
       role: "UX/UI design",
       problem:
-        "Radio Silesia is more than its live programme. There are shows, podcasts, events, a request show (Koncert życzeń) and the Szlaglista chart. The task was to design an app where listeners find all of it in one place and start the radio with a single tap.",
+        "Code shows how I build, but it doesn't always show how I think about an interface. I wanted one place where a client or a recruiter can see the design process itself: screen layout, typography, colour and how a user moves from one step to the next.",
       approach: [
-        "I designed a clickable prototype in Figma that behaves like a real app. A “play radio” button is always visible at the top of the screen, with search and scrolling carousels of shows, podcasts and events below it.",
-        "The bottom navigation bar leads to the key places: home, the request show, the Szlaglista chart and a tab with more content. The dark theme with red accents follows the station's colours.",
+        "I gathered the designs I made while studying IT into a single Figma file. Some are finished projects, some are concepts and ideas. Together they show that I think about the user from the first sketch, not at the very end.",
+        "The file has its own dark landing page and is split into two sections, mobile apps and websites, so you can jump straight to the category you care about. Studying IT also helps me design with the build in mind, thinking about how each screen will later be put together in code.",
       ],
       features: [
-        "“Play radio” button always within reach",
-        "Search across all content",
-        "Carousels of shows, podcasts and events",
-        "Bottom navigation with the request show and Szlaglista",
+        "Separate sections for mobile apps and websites",
+        "Finished projects shown next to concepts and early ideas",
+        "Designs prepared with the later build in mind",
       ],
-      result: "The prototype received the highest marks in the competition.",
+      result: null,
     },
   },
 ];

@@ -14,7 +14,7 @@ import { EASE, FadeIn, Magnetic, RevealText } from "./motion/primitives";
 const EMAIL = "jkotania14@gmail.com";
 
 const inputClass =
-  "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-mono-primary placeholder-mono-secondary/60 transition-colors hover:border-white/20 focus:border-white/40 focus:bg-white/[0.05] focus:outline-none";
+  "w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-mono-primary placeholder-mono-secondary/60 transition-colors hover:border-white/20 focus:border-white/40 focus:bg-white/[0.05]";
 
 export default function Contact() {
   const { t } = useTranslation();
@@ -112,7 +112,7 @@ export default function Contact() {
         <RevealText
           as="h2"
           text={t.contact.headline}
-          className="max-w-4xl text-5xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-6xl md:text-7xl lg:text-8xl"
+          className="max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-6xl md:text-7xl lg:text-8xl"
         />
         <FadeIn delay={0.2}>
           <p className="mt-6 max-w-xl text-base text-mono-secondary md:text-lg">

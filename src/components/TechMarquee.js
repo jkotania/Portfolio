@@ -1,3 +1,7 @@
+"use client";
+import { useState } from "react";
+import { FaPause, FaPlay } from "react-icons/fa";
+import { useTranslation } from "@/app/hooks/useTranslations";
 import {
   SiNextdotjs,
   SiReact,
@@ -57,13 +61,39 @@ function Row({ hidden = false }) {
 }
 
 // Two identical rows scroll by half their width, so the loop has no visible seam.
+// It pauses on hover, and the button lets keyboard and touch users stop it too.
 export default function TechMarquee() {
+  const { t } = useTranslation();
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
-    <div className="marquee-mask group relative border-y border-white/[0.06] py-6">
-      <div className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
-        <Row />
-        <Row hidden />
+    <div className="relative border-y border-white/[0.06]">
+      <div className="marquee-mask overflow-hidden py-6">
+        <div
+          className={`flex w-max animate-marquee ${
+            isPaused ? "[animation-play-state:paused]" : ""
+          }`}
+        >
+          <Row />
+          <Row hidden />
+        </div>
       </div>
+      {/* The whole strip is the button; the small pill on the right shows its state. */}
+      <button
+        type="button"
+        onClick={() => setIsPaused((paused) => !paused)}
+        aria-pressed={isPaused}
+        aria-label={isPaused ? t.hero.playMarquee : t.hero.pauseMarquee}
+        className="group absolute inset-0 flex cursor-pointer items-center justify-end pr-3 focus-visible:outline-offset-[-2px] motion-reduce:hidden"
+      >
+        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-mono-background/80 text-mono-secondary backdrop-blur transition-colors group-hover:border-white/30 group-hover:text-mono-primary">
+          {isPaused ? (
+            <FaPlay className="h-2.5 w-2.5" aria-hidden="true" />
+          ) : (
+            <FaPause className="h-2.5 w-2.5" aria-hidden="true" />
+          )}
+        </span>
+      </button>
     </div>
   );
 }

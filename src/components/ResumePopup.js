@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 import { FaFileDownload } from "react-icons/fa";
@@ -16,14 +16,47 @@ export default function ResumePopup({ isOpen, onClose }) {
   const { t } = useTranslation();
   const { trackEvent } = useAnalytics();
 
+  const dialogRef = useRef(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
+  // While open: lock page scroll, close on Escape, keep Tab inside the dialog,
+  // and give focus back to whatever opened it once it closes.
   useEffect(() => {
     if (!isOpen) return;
+    // Remember the opener before moving focus into the dialog (autoFocus would run too early).
+    const opener = document.activeElement;
+    dialogRef.current?.querySelector("button")?.focus();
+    document.body.style.overflow = "hidden";
+
     const onKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") {
+        onCloseRef.current();
+        return;
+      }
+      if (event.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll(
+        'a[href], button:not([disabled])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [isOpen, onClose]);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+      if (opener instanceof HTMLElement) opener.focus();
+    };
+  }, [isOpen]);
 
   // The link itself opens the PDF; this only records the download.
   const handleDownload = (language, url) => {
@@ -39,10 +72,11 @@ export default function ResumePopup({ isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[70] flex items-center justify-center overscroll-contain bg-black/60 p-4 backdrop-blur-md"
           onClick={onClose}
         >
           <motion.div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby="resume-title"
@@ -57,7 +91,6 @@ export default function ResumePopup({ isOpen, onClose }) {
               type="button"
               onClick={onClose}
               aria-label={t.resumePopup.close}
-              autoFocus
               className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-mono-secondary transition-colors hover:bg-white/[0.06] hover:text-mono-primary"
             >
               <IoClose size={20} aria-hidden="true" />

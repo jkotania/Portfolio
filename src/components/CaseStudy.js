@@ -213,7 +213,7 @@ export default function CaseStudy({ slug }) {
               alt=""
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
-              className="object-cover opacity-40 transition-all duration-700 ease-out group-hover:scale-105 group-hover:opacity-60"
+              className="object-cover opacity-40 transition-[transform,opacity] duration-700 ease-out group-hover:scale-105 group-hover:opacity-60"
             />
             <span className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
             <span className="relative text-sm text-mono-secondary">
