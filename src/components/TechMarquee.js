@@ -28,15 +28,24 @@ const ITEMS = [
   { name: "MongoDB", icon: SiMongodb },
 ];
 
+// One pass of the logos is ~1800px, narrower than wide monitors (2560px+). Each row repeats
+// them so a single row is always wider than the screen and the loop never shows a gap.
+const REPEAT = 3;
+
 function Row({ hidden = false }) {
+  const items = Array.from({ length: REPEAT }, (_, copy) =>
+    ITEMS.map((item) => ({ ...item, copy })),
+  ).flat();
+
   return (
     <ul
       aria-hidden={hidden || undefined}
       className="flex shrink-0 items-center gap-12 pr-12"
     >
-      {ITEMS.map(({ name, icon: Icon }) => (
+      {items.map(({ name, icon: Icon, copy }) => (
         <li
-          key={name}
+          key={`${name}-${copy}`}
+          aria-hidden={copy > 0 || undefined}
           className="flex items-center gap-3 whitespace-nowrap text-lg text-mono-secondary"
         >
           <Icon className="h-5 w-5" aria-hidden="true" />
